@@ -12,7 +12,7 @@ namespace Platform.Tests.Controllers
         public void Index()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            LandingPageController controller = new LandingPageController();
 
             // Act
             ViewResult result = controller.Index() as ViewResult;
