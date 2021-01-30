@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Platform",
+    "\\Platform.Tests"
   ],
+  "SelectedNode": "\\Platform\\Platform.csproj",
   "PreviewInSolutionExplorer": false
 }
