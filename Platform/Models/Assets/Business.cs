@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Platform.Models.Assets
 {
-    public class Business
+    public class Business : Account
     {
     }
 }

@@ -5,7 +5,8 @@ using System.Web;
 
 namespace Platform.Models.Assets
 {
-    public class Account
+    public abstract class Account
     {
+        protected List<Review> reviewList;
     }
 }

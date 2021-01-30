@@ -98,9 +98,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\SearchControllerTest.cs" />
+    <Compile Include="Controllers\MessageControllerTest.cs" />
+    <Compile Include="Models\Assets\AccountTest.cs" />
+    <Compile Include="Models\Assets\BusinessTest.cs" />
+    <Compile Include="Models\Assets\StudentTest.cs" />
+    <Compile Include="Models\Assets\ReviewTest.cs" />
+    <Compile Include="Models\AccountManagerTest.cs" />
+    <Compile Include="Models\DataManagerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controllers\HomeControllerTest.cs" />
-    <Compile Include="Controllers\ValuesControllerTest.cs" />
+    <Compile Include="Controllers\LandingPageControllerTest.cs" />
+    <Compile Include="Controllers\LoginControllerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
