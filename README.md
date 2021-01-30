@@ -4,7 +4,7 @@ Repository to hold the world for the SOFT7006 Project.
 
 Collaborators: 
 
-Nathan L\n
-Rob T\n
-Jaimik P\n
+Nathan L<br/>
+Rob T<br/>
+Jaimik P<br/>
 Amin I
