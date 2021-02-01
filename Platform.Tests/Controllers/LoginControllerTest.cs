@@ -44,15 +44,29 @@ namespace Platform.Tests.Controllers
         }
 
         [TestMethod]
-        public void Post()
+        public void Login()
         {
             // Arrange
             LoginController controller = new LoginController();
 
             // Act
-            string output = controller.Post("value");
+            string positiveTest = controller.Post("{'type': 'login', 'user': 'username', 'password': 'password'}");    
 
             // Assert
+            Assert.AreEqual("OK", positiveTest);
+        }
+
+        [TestMethod]
+        public void LoginNegative()
+        {
+            // Arrange
+            LoginController controller = new LoginController();
+
+            // Act
+            string negativeTest = controller.Post("{'type': 'login', 'user': 'username'}");
+
+            // Assert
+            Assert.AreNotEqual("OK", negativeTest);
         }
 
         [TestMethod]
