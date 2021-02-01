@@ -43,15 +43,20 @@ namespace Platform.Tests.Controllers
         }
 
         [TestMethod]
-        public void Post()
+        public void MessageTest()
         {
             // Arrange
             MessageController controller = new MessageController();
 
             // Act
-            controller.Post("value");
+            Boolean xss = controller.Post("<script>");
+            Boolean sql1 = controller.Post("DROP TABLE table_name;");
+            Boolean sql2 = controller.Post("SELECT * FROM table_name;");
 
             // Assert
+            Assert.IsFalse(xss);
+            Assert.IsFalse(sql1);
+            Assert.IsFalse(sql2);
         }
 
         [TestMethod]

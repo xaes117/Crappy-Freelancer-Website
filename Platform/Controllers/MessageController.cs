@@ -22,8 +22,9 @@ namespace Platform.Controllers
         }
 
         // POST: api/Message
-        public void Post([FromBody]string value)
+        public Boolean Post([FromBody]string value)
         {
+            return false;
         }
 
         // PUT: api/Message/5
