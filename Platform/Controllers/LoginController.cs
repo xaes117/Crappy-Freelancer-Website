@@ -22,13 +22,9 @@ namespace Platform.Controllers
         }
 
         // POST: api/Login
-        public void Post([FromBody]string value)
+        public string Post([FromBody]string value)
         {
-        }
-
-        // PUT: api/Login/5
-        public void Put(int id, [FromBody]string value)
-        {
+            return value;
         }
 
         // DELETE: api/Login/5

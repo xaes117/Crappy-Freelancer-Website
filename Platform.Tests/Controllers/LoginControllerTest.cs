@@ -7,6 +7,7 @@ using System.Web.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Platform;
 using Platform.Controllers;
+using Moq;
 
 namespace Platform.Tests.Controllers
 {
@@ -49,19 +50,7 @@ namespace Platform.Tests.Controllers
             LoginController controller = new LoginController();
 
             // Act
-            controller.Post("value");
-
-            // Assert
-        }
-
-        [TestMethod]
-        public void Put()
-        {
-            // Arrange
-            LoginController controller = new LoginController();
-
-            // Act
-            controller.Put(5, "value");
+            string output = controller.Post("value");
 
             // Assert
         }
