@@ -5,8 +5,11 @@ using System.Net.Http;
 using System.Text;
 using System.Web.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using Platform;
 using Platform.Controllers;
+using Platform.Models;
+using Platform.Models.Assets;
 
 namespace Platform.Tests.Controllers
 {
@@ -30,16 +33,21 @@ namespace Platform.Tests.Controllers
         }
 
         [TestMethod]
-        public void GetById()
+        public void Search()
         {
             // Arrange
+            List<Account> emptList = new List<Account>();
+
+            Mock<AccountManager> accountManager = new Mock<AccountManager>();
+            accountManager.Setup(x => x.searchByProfile("python")).Returns(emptList);
+
             SearchController controller = new SearchController();
 
             // Act
-            string result = controller.Get(5);
+            List<Account> result = controller.Get("python");
 
             // Assert
-            Assert.AreEqual("value", result);
+            Assert.AreEqual(result, emptList);
         }
 
         [TestMethod]
