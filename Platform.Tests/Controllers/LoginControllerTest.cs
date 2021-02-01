@@ -45,28 +45,21 @@ namespace Platform.Tests.Controllers
         }
 
         [TestMethod]
-        public void Login()
+        public void LoginTest()
         {
             // Arrange
-            LoginController controller = new LoginController();
+            Mock<DataManager> dataManager = new Mock<DataManager>();
+            dataManager.Setup(x => x.userExists("user1")).Returns(true);
+            dataManager.Setup(x => x.userExists("user2")).Returns(false);
+
+            LoginController controller = new LoginController(dataManager.Object);
 
             // Act
-            string positiveTest = controller.Post("{'type': 'login', 'user': 'username', 'password': 'password'}");    
+            string positiveTest = controller.Post("{'type': 'login', 'user': 'user1', 'password': 'password123@'}");
+            string negativeTest = controller.Post("{'type': 'login', 'user': 'user2', 'password': 'password123@'}");
 
             // Assert
             Assert.AreEqual("OK", positiveTest);
-        }
-
-        [TestMethod]
-        public void LoginNegative()
-        {
-            // Arrange
-            LoginController controller = new LoginController();
-
-            // Act
-            string negativeTest = controller.Post("{'type': 'login', 'user': 'username'}");
-
-            // Assert
             Assert.AreNotEqual("OK", negativeTest);
         }
 
@@ -100,8 +93,8 @@ namespace Platform.Tests.Controllers
             LoginController controller = new LoginController(dataManager.Object);
 
             // Act
-            string user1 = controller.Post("{'type': 'register', 'user1': 'username', password: 'password123@'}");
-            string user2 = controller.Post("{'type': 'register', 'user2': 'username', password: 'password123@'}");
+            string user1 = controller.Post("{'type': 'register', 'user': 'user1', password: 'password123@'}");
+            string user2 = controller.Post("{'type': 'register', 'user': 'user2', password: 'password123@'}");
 
             // Assert
             Assert.AreEqual("OK", user1);
