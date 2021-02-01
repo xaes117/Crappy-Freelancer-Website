@@ -7,5 +7,9 @@ namespace Platform.Models
 {
     public class DataManager
     {
+        public Boolean userExists(string username)
+        {
+            return false;
+        }
     }
 }

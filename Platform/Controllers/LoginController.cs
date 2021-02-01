@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Platform.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,6 +10,9 @@ namespace Platform.Controllers
 {
     public class LoginController : ApiController
     {
+
+        private DataManager dataManager;
+
         // GET: api/Login
         public IEnumerable<string> Get()
         {
@@ -22,18 +26,24 @@ namespace Platform.Controllers
         }
 
         // POST: api/Login
-        public void Post([FromBody]string value)
+        public string Post([FromBody]string value)
         {
-        }
-
-        // PUT: api/Login/5
-        public void Put(int id, [FromBody]string value)
-        {
+            return value;
         }
 
         // DELETE: api/Login/5
         public void Delete(int id)
         {
+        }
+
+        public LoginController()
+        {
+            this.dataManager = new DataManager();
+        }
+
+        public LoginController(DataManager manager)
+        {
+            this.dataManager = manager;
         }
     }
 }
