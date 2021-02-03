@@ -14,35 +14,6 @@ namespace Platform.Tests.Controllers
     public class MessageControllerTest
     {
         [TestMethod]
-        public void Get()
-        {
-            // Arrange
-            MessageController controller = new MessageController();
-
-            // Act
-            IEnumerable<string> result = controller.Get();
-
-            // Assert
-            Assert.IsNotNull(result);
-            Assert.AreEqual(2, result.Count());
-            Assert.AreEqual("value1", result.ElementAt(0));
-            Assert.AreEqual("value2", result.ElementAt(1));
-        }
-
-        [TestMethod]
-        public void GetById()
-        {
-            // Arrange
-            MessageController controller = new MessageController();
-
-            // Act
-            string result = controller.Get(5);
-
-            // Assert
-            Assert.AreEqual("value", result);
-        }
-
-        [TestMethod]
         public void MessageTest()
         {
             // Arrange
@@ -57,30 +28,6 @@ namespace Platform.Tests.Controllers
             Assert.IsFalse(xss);
             Assert.IsFalse(sql1);
             Assert.IsFalse(sql2);
-        }
-
-        [TestMethod]
-        public void Put()
-        {
-            // Arrange
-            MessageController controller = new MessageController();
-
-            // Act
-            controller.Put(5, "value");
-
-            // Assert
-        }
-
-        [TestMethod]
-        public void Delete()
-        {
-            // Arrange
-            MessageController controller = new MessageController();
-
-            // Act
-            controller.Delete(5);
-
-            // Assert
         }
     }
 }

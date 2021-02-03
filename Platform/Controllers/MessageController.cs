@@ -9,12 +9,6 @@ namespace Platform.Controllers
 {
     public class MessageController : ApiController
     {
-        // GET: api/Message
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
         // GET: api/Message/5
         public string Get(int id)
         {
@@ -25,16 +19,6 @@ namespace Platform.Controllers
         public Boolean Post([FromBody]string value)
         {
             return false;
-        }
-
-        // PUT: api/Message/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Message/5
-        public void Delete(int id)
-        {
         }
     }
 }

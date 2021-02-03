@@ -15,34 +15,6 @@ namespace Platform.Tests.Controllers
     [TestClass]
     public class LoginControllerTest
     {
-        [TestMethod]
-        public void Get()
-        {
-            // Arrange
-            LoginController controller = new LoginController();
-
-            // Act
-            IEnumerable<string> result = controller.Get();
-
-            // Assert
-            Assert.IsNotNull(result);
-            Assert.AreEqual(2, result.Count());
-            Assert.AreEqual("value1", result.ElementAt(0));
-            Assert.AreEqual("value2", result.ElementAt(1));
-        }
-
-        [TestMethod]
-        public void GetById()
-        {
-            // Arrange
-            LoginController controller = new LoginController();
-
-            // Act
-            string result = controller.Get(5);
-
-            // Assert
-            Assert.AreEqual("value", result);
-        }
 
         [TestMethod]
         public void LoginTest()
@@ -99,18 +71,6 @@ namespace Platform.Tests.Controllers
             // Assert
             Assert.AreEqual("OK", user1);
             Assert.AreNotEqual("OK", user2);
-        }
-
-        [TestMethod]
-        public void Delete()
-        {
-            // Arrange
-            LoginController controller = new LoginController();
-
-            // Act
-            controller.Delete(5);
-
-            // Assert
         }
     }
 }

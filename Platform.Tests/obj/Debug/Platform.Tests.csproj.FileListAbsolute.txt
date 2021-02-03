@@ -39,3 +39,11 @@ C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\obj\Debug\Platform
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\obj\Debug\Platform.Tests.csproj.CopyComplete
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\obj\Debug\Platform.Tests.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\obj\Debug\Platform.Tests.pdb
+C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Debug\Castle.Core.dll
+C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Debug\Moq.dll
+C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Debug\Castle.Core.xml
+C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Debug\Moq.xml
+C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Debug\System.Threading.Tasks.Extensions.xml
