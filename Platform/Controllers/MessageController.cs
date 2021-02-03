@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Platform.Models;
+using Platform.Models.Assets;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,16 +11,13 @@ namespace Platform.Controllers
 {
     public class MessageController : ApiController
     {
-        // GET: api/Message
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        private DataManager dataManager;
 
         // GET: api/Message/5
-        public string Get(int id)
+        public List<Message> Get(string query)
         {
-            return "value";
+            // return last N messages
+            return null; 
         }
 
         // POST: api/Message
@@ -27,14 +26,14 @@ namespace Platform.Controllers
             return false;
         }
 
-        // PUT: api/Message/5
-        public void Put(int id, [FromBody]string value)
+        public MessageController()
         {
+            this.dataManager= new DataManager();
         }
 
-        // DELETE: api/Message/5
-        public void Delete(int id)
+        public MessageController(DataManager dataManager)
         {
+            this.dataManager = dataManager;
         }
     }
 }

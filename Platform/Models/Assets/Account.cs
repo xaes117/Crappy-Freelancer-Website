@@ -8,5 +8,6 @@ namespace Platform.Models.Assets
     public abstract class Account
     {
         protected List<Review> reviewList;
+        protected List<Message> messageList;
     }
 }

@@ -165,6 +165,7 @@
     <Compile Include="Models\AccountManager.cs" />
     <Compile Include="Models\Assets\Account.cs" />
     <Compile Include="Models\Assets\Business.cs" />
+    <Compile Include="Models\Assets\Message.cs" />
     <Compile Include="Models\Assets\Review.cs" />
     <Compile Include="Models\Assets\Student.cs" />
     <Compile Include="Models\DataManager.cs" />

@@ -7,39 +7,32 @@ using System.Web.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Platform;
 using Platform.Controllers;
+using Moq;
+using Platform.Models;
+using Platform.Models.Assets;
 
 namespace Platform.Tests.Controllers
 {
     [TestClass]
     public class MessageControllerTest
     {
-        [TestMethod]
-        public void Get()
-        {
-            // Arrange
-            MessageController controller = new MessageController();
-
-            // Act
-            IEnumerable<string> result = controller.Get();
-
-            // Assert
-            Assert.IsNotNull(result);
-            Assert.AreEqual(2, result.Count());
-            Assert.AreEqual("value1", result.ElementAt(0));
-            Assert.AreEqual("value2", result.ElementAt(1));
-        }
 
         [TestMethod]
-        public void GetById()
+        public void GetMessageTest()
         {
+            List<Message> messages = new List<Message>();
+
             // Arrange
-            MessageController controller = new MessageController();
+            Mock<DataManager> dataManager = new Mock<DataManager>();
+            dataManager.Setup(x => x.getMessages(It.IsAny<Account>(),It.IsAny<Account>())).Returns(messages);
+            
+            MessageController controller = new MessageController(dataManager.Object);
 
             // Act
-            string result = controller.Get(5);
+            List<Message> messageList = controller.Get("21343-10391-5");
 
             // Assert
-            Assert.AreEqual("value", result);
+            Assert.AreEqual(messageList, messages);
         }
 
         [TestMethod]
@@ -57,30 +50,6 @@ namespace Platform.Tests.Controllers
             Assert.IsFalse(xss);
             Assert.IsFalse(sql1);
             Assert.IsFalse(sql2);
-        }
-
-        [TestMethod]
-        public void Put()
-        {
-            // Arrange
-            MessageController controller = new MessageController();
-
-            // Act
-            controller.Put(5, "value");
-
-            // Assert
-        }
-
-        [TestMethod]
-        public void Delete()
-        {
-            // Arrange
-            MessageController controller = new MessageController();
-
-            // Act
-            controller.Delete(5);
-
-            // Assert
         }
     }
 }
