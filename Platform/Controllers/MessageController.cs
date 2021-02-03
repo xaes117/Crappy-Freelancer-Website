@@ -14,7 +14,7 @@ namespace Platform.Controllers
         private DataManager dataManager;
 
         // GET: api/Message/5
-        public List<Message> Get(int N)
+        public List<Message> Get(string query)
         {
             // return last N messages
             return null; 

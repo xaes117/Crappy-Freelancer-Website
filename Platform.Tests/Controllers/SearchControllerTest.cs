@@ -23,7 +23,7 @@ namespace Platform.Tests.Controllers
             List<Account> emptList = new List<Account>();
 
             Mock<AccountManager> accountManager = new Mock<AccountManager>();
-            accountManager.Setup(x => x.searchByProfile("python")).Returns(emptList);
+            accountManager.Setup(x => x.searchByProfile(It.IsAny<string>())).Returns(emptList);
 
             SearchController controller = new SearchController();
 

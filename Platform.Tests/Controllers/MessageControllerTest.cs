@@ -20,18 +20,16 @@ namespace Platform.Tests.Controllers
         [TestMethod]
         public void GetMessageTest()
         {
-            Student student = new Student();
-            Business business = new Business();
             List<Message> messages = new List<Message>();
 
             // Arrange
             Mock<DataManager> dataManager = new Mock<DataManager>();
-            dataManager.Setup(x => x.getMessages(student, business)).Returns(messages);
+            dataManager.Setup(x => x.getMessages(It.IsAny<Account>(),It.IsAny<Account>())).Returns(messages);
             
             MessageController controller = new MessageController(dataManager.Object);
 
             // Act
-            List<Message> messageList = controller.Get(0);
+            List<Message> messageList = controller.Get("21343-10391-5");
 
             // Assert
             Assert.AreEqual(messageList, messages);
