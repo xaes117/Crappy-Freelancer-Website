@@ -7,12 +7,36 @@ using System.Web.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Platform;
 using Platform.Controllers;
+using Moq;
+using Platform.Models;
+using Platform.Models.Assets;
 
 namespace Platform.Tests.Controllers
 {
     [TestClass]
     public class MessageControllerTest
     {
+
+        [TestMethod]
+        public void GetMessageTest()
+        {
+            Student student = new Student();
+            Business business = new Business();
+            List<Message> messages = new List<Message>();
+
+            // Arrange
+            Mock<DataManager> dataManager = new Mock<DataManager>();
+            dataManager.Setup(x => x.getMessages(student, business)).Returns(messages);
+            
+            MessageController controller = new MessageController(dataManager.Object);
+
+            // Act
+            List<Message> messageList = controller.Get(0);
+
+            // Assert
+            Assert.AreEqual(messageList, messages);
+        }
+
         [TestMethod]
         public void MessageTest()
         {
