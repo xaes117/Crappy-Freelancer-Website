@@ -26,19 +26,13 @@ namespace AcceptanceTesting.DriverLib
         // Click on a button
         public void Click(string buttonName)
         {
-            
-        }
-
-        // Hit Enter key
-        public void Enter()
-        {
-
+            this.driver.FindElement(By.PartialLinkText(buttonName)).Click();
         }
 
         // Enter text into a box
-        public void TypeText(string text)
+        public void TypeText(string fieldId, string text)
         {
-
+            this.driver.FindElement(By.Id(fieldId)).SendKeys(text);
         }
 
         public void Close()
