@@ -53,6 +53,7 @@
     <Compile Include="AcceptanceTests\LoginControllerAT.cs" />
     <Compile Include="AcceptanceTests\MessageControllerAT.cs" />
     <Compile Include="AcceptanceTests\SearchControllerAT.cs" />
+    <Compile Include="DriverLib\Driver.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
