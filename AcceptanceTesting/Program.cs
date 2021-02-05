@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+﻿using AcceptanceTesting.DriverLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +12,8 @@ namespace AcceptanceTesting
         static void Main(string[] args)
         {
 
-            IWebDriver driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("https://www.bing.com");
-
+            Driver driver = new Driver();
+            driver.GoTo("https://www.bing.com");
             Console.WriteLine("Press any key to exit:");
             Console.ReadLine();
 

@@ -3,27 +3,47 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 
 namespace AcceptanceTesting.DriverLib
 {
     class Driver
     {
+        private IWebDriver driver;
+
+        public Driver()
+        {
+             this.driver = new ChromeDriver();
+        }
+
+        // Go to url
+        public void GoTo(string url)
+        {
+            this.driver.Navigate().GoToUrl(url);
+        }
+
         // Click on a button
-        public static void Click(string buttonName)
+        public void Click(string buttonName)
         {
             
         }
 
         // Hit Enter key
-        public static void Enter()
+        public void Enter()
         {
 
         }
 
         // Enter text into a box
-        public static void TypeText(string text)
+        public void TypeText(string text)
         {
 
+        }
+
+        public void Close()
+        {
+            this.driver.Close();
         }
     }
 }
