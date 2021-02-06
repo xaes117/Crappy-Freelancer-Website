@@ -6,7 +6,8 @@ namespace AcceptanceTesting.AcceptanceTests
 {
     public class LoginTests
     {
-        //All email addresses must be confirmed
+        // ID: 1.1.1
+        // Rule: All email addresses must be confirmed
         public static bool ConfirmEmail(string registrationPage, string email, string password)
         {
             Driver user = new Driver();
@@ -20,7 +21,8 @@ namespace AcceptanceTesting.AcceptanceTests
             return text.Contains("Confirmation email sent");
         }
 
-        //All email addresses must be unique
+        // ID: 1.1.2
+        // Rule: All email addresses must be unique
         public static bool UniqueEmail(string registrationPage, string email, string password)
         {
             Driver user = new Driver();
@@ -34,7 +36,8 @@ namespace AcceptanceTesting.AcceptanceTests
             return !text.Contains("Email address is already associated with an account");
         }
 
-        //Passwords must have at least 6 characters
+        // ID: 1.2.1
+        // Rule: Passwords must have at least 6 characters
         public static bool PasswordLengthTest(string registrationPage, string email, string password)
         {
 
@@ -65,7 +68,8 @@ namespace AcceptanceTesting.AcceptanceTests
 
         }
 
-        //Passwords must have at least one special character
+        // ID: 1.2.2
+        // Rule: Passwords must have at least one special character
         public static bool PasswordSpecialCharacterTest(string registrationPage, string email, string password)
         {
             Driver user = new Driver();
@@ -79,7 +83,8 @@ namespace AcceptanceTesting.AcceptanceTests
             return !text.Contains("Password must have at least one special character");
         }
 
-        //Passwords must have at least one numeric character
+        // ID: 1.2.3
+        // Rule: Passwords must have at least one numeric character
         public static bool PasswordNumericTest(string registrationPage, string email, string password)
         {
             Driver user = new Driver();
@@ -92,8 +97,9 @@ namespace AcceptanceTesting.AcceptanceTests
             user.Close();
             return !text.Contains("Password must have at least one number");
         }
-        
-        //Students must create a basic profile after registration
+
+        // ID: 1.3.1
+        // Rule: Students must create a basic profile after registration
         public static bool CreateFreelanceProfileAfterEmailConfirmation(string confirmationLink)
         {
             Driver user = new Driver();
@@ -104,7 +110,8 @@ namespace AcceptanceTesting.AcceptanceTests
             return text.Contains("Create freelancer profile");
         }
 
-        //Businesses must create a basic profile after registration
+        // ID: 1.4.1
+        // Rule: Businesses must create a basic profile after registration
         public static bool CreateBusinessProfileAfterEmailConfirmation(string confirmationLink)
         {
             Driver user = new Driver();
