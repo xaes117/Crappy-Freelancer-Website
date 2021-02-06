@@ -31,7 +31,7 @@ namespace AcceptanceTesting.AcceptanceTests
             user.Click("Register");
 
             // Wait for new page to load
-            Thread.Sleep(2000);
+            user.Wait(2000);
 
             // Read the page
             string text = user.ReadPage();

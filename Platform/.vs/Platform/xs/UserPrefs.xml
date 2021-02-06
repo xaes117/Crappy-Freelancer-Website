@@ -1,17 +1,18 @@
 ﻿<Properties StartupConfiguration="{62BB3188-35EB-4734-B4D6-0025A106D0EC}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="../AcceptanceTesting/AcceptanceTests/LoginTests.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../AcceptanceTesting/DriverLib/Driver.cs">
     <Files>
-      <File FileName="../AcceptanceTesting/AcceptanceTests/LoginTests.cs" Line="34" Column="10" />
+      <File FileName="../AcceptanceTesting/AcceptanceTests/LoginTests.cs" Line="34" Column="1" />
+      <File FileName="../AcceptanceTesting/DriverLib/Driver.cs" Line="43" Column="12" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Platform" expanded="True">
             <Node name="AcceptanceTesting" expanded="True">
-              <Node name="AcceptanceTests" expanded="True">
-                <Node name="LoginTests.cs" selected="True" />
+              <Node name="AcceptanceTests" expanded="True" />
+              <Node name="DriverLib" expanded="True">
+                <Node name="Driver.cs" selected="True" />
               </Node>
-              <Node name="DriverLib" expanded="True" />
             </Node>
             <Node name="Platform.Tests" expanded="True">
               <Node name="Controllers" expanded="True" />
