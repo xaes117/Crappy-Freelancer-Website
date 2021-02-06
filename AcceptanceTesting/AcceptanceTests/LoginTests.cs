@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using AcceptanceTesting.DriverLib;
 
 namespace AcceptanceTesting.AcceptanceTests
@@ -28,6 +29,9 @@ namespace AcceptanceTesting.AcceptanceTests
 
             // Click register
             user.Click("Register");
+
+            // Wait for new page to load
+            Thread.Sleep(2000);
 
             // Read the page
             string text = user.ReadPage();
