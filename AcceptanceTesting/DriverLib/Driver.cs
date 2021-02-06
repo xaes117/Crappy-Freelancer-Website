@@ -35,6 +35,11 @@ namespace AcceptanceTesting.DriverLib
             this.driver.FindElement(By.Id(fieldId)).SendKeys(text);
         }
 
+        public string ReadPage()
+        {
+            return this.driver.FindElement(By.TagName("body")).Text.ToString();
+        }
+
         public void Close()
         {
             this.driver.Close();

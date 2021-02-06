@@ -14,6 +14,8 @@ namespace AcceptanceTesting
 
             Driver driver = new Driver();
             driver.GoTo("https://www.bing.com");
+            string text = driver.ReadPage();
+            Console.WriteLine(text);
             Console.WriteLine("Press any key to exit:");
             Console.ReadLine();
 
