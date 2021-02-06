@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -33,6 +34,16 @@ namespace AcceptanceTesting.DriverLib
         public void TypeText(string fieldId, string text)
         {
             this.driver.FindElement(By.Id(fieldId)).SendKeys(text);
+        }
+
+        public string ReadPage()
+        {
+            return this.driver.FindElement(By.TagName("body")).Text.ToString();
+        }
+
+        public void Wait(int time)
+        {
+            Thread.Sleep(time);
         }
 
         public void Close()
