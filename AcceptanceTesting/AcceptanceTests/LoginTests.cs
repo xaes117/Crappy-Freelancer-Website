@@ -16,17 +16,23 @@ namespace AcceptanceTesting.AcceptanceTests
         public static bool PasswordLengthTest(string registrationPage, string email, string password)
         {
 
+            // Open chrome browser
             Driver user = new Driver();
+            
+            // Go directly to registration page
             user.GoTo(registrationPage);
 
             // Note: TypeText searches email and password attributed by id
             user.TypeText("email", email);
             user.TypeText("password", password);
 
+            // Click register
             user.Click("Register");
 
+            // Read the page
             string text = user.ReadPage();
 
+            // Close the browser
             user.Close();
 
             return text.Contains("Invalid password") ? false : true;
