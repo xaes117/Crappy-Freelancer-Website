@@ -6,120 +6,63 @@ namespace AcceptanceTesting.AcceptanceTests
 {
     public class LoginTests
     {
-        // ID: 1.1.1
-        // Rule: All email addresses must be confirmed
-        public static bool ConfirmEmail(string registrationPage, string email, string password)
+
+        private static int WaitTime = 1000;
+
+        // ID: 2.1.1 & 2.1.2 
+        // Rule 1: Account must be locked after five failed login attempts
+        // Rule 2: Users cannot attempt to login to a locked account
+        public static bool LockTest(string loginPage, string email, string incorrectPassword, string correctPassword)
         {
             Driver user = new Driver();
-            user.GoTo(registrationPage);
-            user.TypeText("email", email);
-            user.TypeText("password", password);
-            user.Click("Register");
-            user.Wait(2000);
+
+            // Attempt incorrect login more than 5 times
+            for (int i = 0; i < 6; i++)
+            {
+                // go to login page
+                user.GoTo(loginPage);
+
+                // wait for page to load
+                user.Wait(LoginTests.WaitTime);
+
+                // enter email and password
+                user.TypeText("email", email);
+                user.TypeText("password", incorrectPassword);
+
+                // login and wait
+                user.Click("Login");
+                user.Wait(LoginTests.WaitTime);
+            }
+
+            // read page
             string text = user.ReadPage();
-            user.Close();
-            return text.Contains("Confirmation email sent");
-        }
+           
+            // confirm rule 1
+            bool rule1 = text.Contains("Account locked") && text.Contains("5 minutes");
 
-        // ID: 1.1.2
-        // Rule: All email addresses must be unique
-        public static bool UniqueEmail(string registrationPage, string email, string password)
-        {
-            Driver user = new Driver();
-            user.GoTo(registrationPage);
+            // return to login page
+            user.GoTo(loginPage);
+
+            // wait for page to load
+            user.Wait(WaitTime);
+
+            // enter email and password
             user.TypeText("email", email);
-            user.TypeText("password", password);
-            user.Click("Register");
-            user.Wait(2000);
-            string text = user.ReadPage();
-            user.Close();
-            return !text.Contains("Email address is already associated with an account");
-        }
-
-        // ID: 1.2.1
-        // Rule: Passwords must have at least 6 characters
-        public static bool PasswordLengthTest(string registrationPage, string email, string password)
-        {
-
-            // Open chrome browser
-            Driver user = new Driver();
+            user.TypeText("password", correctPassword);
             
-            // Go directly to registration page
-            user.GoTo(registrationPage);
+            // login and wait for response
+            user.Click("Login");
+            user.Wait(WaitTime);
 
-            // Note: TypeText searches email and password attributed by id
-            user.TypeText("email", email);
-            user.TypeText("password", password);
+            // confirm rule 2
+            bool rule2 = user.ReadPage().Contains("Account locked");
 
-            // Click register
-            user.Click("Register");
-
-            // Wait for new page to load
-            user.Wait(2000);
-
-            // Read the page
-            string text = user.ReadPage();
-
-            // Close the browser
-            user.Close();
-
-            // Negate outcome as True => Fail and False => Success
-            return !text.Contains("Password must have at least six characters");
-
+            // return the two rules
+            return rule1 && rule2;
         }
 
-        // ID: 1.2.2
-        // Rule: Passwords must have at least one special character
-        public static bool PasswordSpecialCharacterTest(string registrationPage, string email, string password)
-        {
-            Driver user = new Driver();
-            user.GoTo(registrationPage);
-            user.TypeText("email", email);
-            user.TypeText("password", password);
-            user.Click("Register");
-            user.Wait(2000);
-            string text = user.ReadPage();
-            user.Close();
-            return !text.Contains("Password must have at least one special character");
-        }
+        // 2.2.1 Users must be shown the home page after login
+        // 2.3.1 Users can reset their password if forgotten
 
-        // ID: 1.2.3
-        // Rule: Passwords must have at least one numeric character
-        public static bool PasswordNumericTest(string registrationPage, string email, string password)
-        {
-            Driver user = new Driver();
-            user.GoTo(registrationPage);
-            user.TypeText("email", email);
-            user.TypeText("password", password);
-            user.Click("Register");
-            user.Wait(2000);
-            string text = user.ReadPage();
-            user.Close();
-            return !text.Contains("Password must have at least one number");
-        }
-
-        // ID: 1.3.1
-        // Rule: Students must create a basic profile after registration
-        public static bool CreateFreelanceProfileAfterEmailConfirmation(string confirmationLink)
-        {
-            Driver user = new Driver();
-            user.GoTo(confirmationLink);
-            user.Wait(2000);
-            string text = user.ReadPage();
-            user.Close();
-            return text.Contains("Create freelancer profile");
-        }
-
-        // ID: 1.4.1
-        // Rule: Businesses must create a basic profile after registration
-        public static bool CreateBusinessProfileAfterEmailConfirmation(string confirmationLink)
-        {
-            Driver user = new Driver();
-            user.GoTo(confirmationLink);
-            user.Wait(2000);
-            string text = user.ReadPage();
-            user.Close();
-            return text.Contains("Create business profile");
-        }
     }
 }
