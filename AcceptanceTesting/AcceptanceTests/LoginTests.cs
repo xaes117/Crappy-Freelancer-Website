@@ -62,6 +62,10 @@ namespace AcceptanceTesting.AcceptanceTests
         }
 
         // 2.2.1 Users must be shown the home page after login
+        public static bool LoginHomePage(string email, string password)
+        {
+            return false;
+        }
         // 2.3.1 Users can reset their password if forgotten
 
     }
