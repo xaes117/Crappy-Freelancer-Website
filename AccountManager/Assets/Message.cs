@@ -1,4 +1,4 @@
-﻿namespace Platform.Models.Assets
+﻿namespace AccountManager.Assets
 {
     public class Message
     {

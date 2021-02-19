@@ -1,13 +1,9 @@
-﻿using Platform.Models.Assets;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-using MySql.Data;
+using AccountManager.Assets;
 using MySql.Data.MySqlClient;
 
-namespace Platform.Models
+namespace DatabaseManager
 {
     public class DataManager
     {

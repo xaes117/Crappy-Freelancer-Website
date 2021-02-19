@@ -1,10 +1,10 @@
-﻿using Platform.Models.Assets;
+﻿using AccountManager.Assets;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Platform.Models
+namespace AccountManager
 {
     public class AccountManager
     {

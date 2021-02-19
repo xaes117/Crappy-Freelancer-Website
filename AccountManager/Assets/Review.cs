@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Platform.Models.Assets
+namespace AccountManager.Assets
 {
     public class Review
     {
