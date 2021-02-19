@@ -8,8 +8,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Platform;
 using Platform.Controllers;
 using Moq;
-using Platform.Models;
-using Platform.Models.Assets;
+using DBManager;
+using Accounts.Assets;
 
 namespace Platform.Tests.Controllers
 {

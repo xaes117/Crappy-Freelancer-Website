@@ -112,12 +112,6 @@
   <ItemGroup>
     <Compile Include="Controllers\SearchControllerTest.cs" />
     <Compile Include="Controllers\MessageControllerTest.cs" />
-    <Compile Include="Models\Assets\AccountTest.cs" />
-    <Compile Include="Models\Assets\BusinessTest.cs" />
-    <Compile Include="Models\Assets\StudentTest.cs" />
-    <Compile Include="Models\Assets\ReviewTest.cs" />
-    <Compile Include="Models\AccountManagerTest.cs" />
-    <Compile Include="Models\DataManagerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\LandingPageControllerTest.cs" />
     <Compile Include="Controllers\LoginControllerTest.cs" />
@@ -129,6 +123,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Accounts\Accounts.csproj">
+      <Project>{f55b8a47-2af6-49c0-a1cd-cc7531bea954}</Project>
+      <Name>Accounts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DBManager\DBManager.csproj">
+      <Project>{50f22d0f-bcd3-4c8d-b780-467197ce42a3}</Project>
+      <Name>DBManager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Platform\Platform.csproj">
       <Project>{C663C662-A296-456B-8A22-7EC0C7BF24AB}</Project>
       <Name>Platform</Name>

@@ -8,16 +8,6 @@
 /Users/nathanliu/Documents/University/Oxford Brookes/Advanced Software Development/SOFT7003-Project/AcceptanceTesting/bin/Debug/WebDriver.dll
 /Users/nathanliu/Documents/University/Oxford Brookes/Advanced Software Development/SOFT7003-Project/AcceptanceTesting/bin/Debug/WebDriver.xml
 /Users/nathanliu/Documents/University/Oxford Brookes/Advanced Software Development/SOFT7003-Project/AcceptanceTesting/obj/Debug/AcceptanceTesting.csproj.CopyComplete
-C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\bin\Debug\AcceptanceTesting.exe.config
-C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\bin\Debug\AcceptanceTesting.exe
-C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\bin\Debug\AcceptanceTesting.pdb
-C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\bin\Debug\WebDriver.dll
-C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\bin\Debug\WebDriver.xml
-C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\obj\Debug\AcceptanceTesting.csprojAssemblyReference.cache
-C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\obj\Debug\AcceptanceTesting.csproj.CoreCompileInputs.cache
-C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\obj\Debug\AcceptanceTesting.csproj.CopyComplete
-C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\obj\Debug\AcceptanceTesting.exe
-C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\obj\Debug\AcceptanceTesting.pdb
 C:\Users\Administrator\SOFT7003-Project\AcceptanceTesting\bin\Debug\AcceptanceTesting.exe.config
 C:\Users\Administrator\SOFT7003-Project\AcceptanceTesting\bin\Debug\AcceptanceTesting.exe
 C:\Users\Administrator\SOFT7003-Project\AcceptanceTesting\bin\Debug\AcceptanceTesting.pdb
@@ -28,3 +18,12 @@ C:\Users\Administrator\SOFT7003-Project\AcceptanceTesting\obj\Debug\AcceptanceTe
 C:\Users\Administrator\SOFT7003-Project\AcceptanceTesting\obj\Debug\AcceptanceTesting.csproj.CopyComplete
 C:\Users\Administrator\SOFT7003-Project\AcceptanceTesting\obj\Debug\AcceptanceTesting.exe
 C:\Users\Administrator\SOFT7003-Project\AcceptanceTesting\obj\Debug\AcceptanceTesting.pdb
+C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\bin\Debug\AcceptanceTesting.exe.config
+C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\bin\Debug\AcceptanceTesting.exe
+C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\bin\Debug\AcceptanceTesting.pdb
+C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\bin\Debug\WebDriver.dll
+C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\bin\Debug\WebDriver.xml
+C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\obj\Debug\AcceptanceTesting.csproj.CoreCompileInputs.cache
+C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\obj\Debug\AcceptanceTesting.csproj.CopyComplete
+C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\obj\Debug\AcceptanceTesting.exe
+C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\obj\Debug\AcceptanceTesting.pdb

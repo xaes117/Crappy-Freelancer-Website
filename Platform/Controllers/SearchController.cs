@@ -1,5 +1,5 @@
-﻿using Platform.Models;
-using Platform.Models.Assets;
+﻿using Accounts;
+using Accounts.Assets;
 using System;
 using System.Collections.Generic;
 using System.Linq;

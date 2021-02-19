@@ -4,12 +4,12 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Web.Http;
+using Accounts;
+using Accounts.Assets;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Platform;
 using Platform.Controllers;
-using Platform.Models;
-using Platform.Models.Assets;
 
 namespace Platform.Tests.Controllers
 {
