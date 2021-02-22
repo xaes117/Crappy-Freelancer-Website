@@ -42,10 +42,10 @@ namespace Platform.Tests.Controllers
             LoginController controller = new LoginController();
 
             // Act
-            string out1 = controller.Post("{'type': 'register', 'user': 'username', password: 'password'}");
-            string out2 = controller.Post("{'type': 'register', 'user': 'username', password: 'password123'}");
-            string out3 = controller.Post("{'type': 'register', 'user': 'username', password: 'password@'}");
-            string out4 = controller.Post("{'type': 'register', 'user': 'username', password: 'passwo'}");
+            string out1 = controller.Post("{'type': 'register', 'user@email.com': 'username', password: 'password'}");
+            string out2 = controller.Post("{'type': 'register', 'user@email.com': 'username', password: 'password123'}");
+            string out3 = controller.Post("{'type': 'register', 'user@email.com': 'username', password: 'password@'}");
+            string out4 = controller.Post("{'type': 'register', 'user@email.com': 'username', password: 'passwo'}");
 
             // Assert
             Assert.AreNotEqual("OK", out1);
@@ -53,6 +53,25 @@ namespace Platform.Tests.Controllers
             Assert.AreNotEqual("OK", out3);
             Assert.AreNotEqual("OK", out4);
         }
+
+        [TestMethod]
+        public void RegisterEmailTest()
+        {
+            // Arrange
+            LoginController controller = new LoginController();
+
+            // Act
+            string out1 = controller.Post("{'type': 'register', 'user': 'invalidEmailFormat', password: 'password'}");
+            string out2 = controller.Post("{'type': 'register', 'user': 'invalid@emailFormat', password: 'password123'}");
+            string out3 = controller.Post("{'type': 'register', 'user': 'valid@email.format', password: 'passwo'}");
+
+            // Assert
+            Assert.AreNotEqual("OK", out1);
+            Assert.AreNotEqual("OK", out2);
+            Assert.AreEqual("OK", out3);
+        }
+
+
 
         [TestMethod]
         public void RegisterUserTest()
@@ -65,8 +84,8 @@ namespace Platform.Tests.Controllers
             LoginController controller = new LoginController(dataManager.Object);
 
             // Act
-            string user1 = controller.Post("{'type': 'register', 'user': 'user1', password: 'password123@'}");
-            string user2 = controller.Post("{'type': 'register', 'user': 'user2', password: 'password123@'}");
+            string user1 = controller.Post("{'type': 'register', 'user@email.com': 'user1', password: 'password123@'}");
+            string user2 = controller.Post("{'type': 'register', 'user@email.com': 'user2', password: 'password123@'}");
 
             // Assert
             Assert.AreEqual("OK", user1);
