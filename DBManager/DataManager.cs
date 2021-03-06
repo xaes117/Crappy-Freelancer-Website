@@ -55,7 +55,7 @@ namespace DBManager
         }
 
         //open connection to database
-        private bool OpenConnection()
+        public bool OpenConnection()
         {
             try
             {
@@ -70,7 +70,7 @@ namespace DBManager
         }
 
         //Close connection
-        private bool CloseConnection()
+        public bool CloseConnection()
         {
             try
             {

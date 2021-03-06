@@ -82,6 +82,14 @@
 /Users/nathanliu/Documents/University/Oxford Brookes/Advanced Software Development/SOFT7003-Project/Platform/obj/Debug/Platform.csproj.CopyComplete
 /Users/nathanliu/Documents/University/Oxford Brookes/Advanced Software Development/SOFT7003-Project/Platform/obj/Debug/Platform.dll
 /Users/nathanliu/Documents/University/Oxford Brookes/Advanced Software Development/SOFT7003-Project/Platform/obj/Debug/Platform.pdb
+C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\System.ValueTuple.dll
+C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\System.Xml.XPath.dll
+C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\vbc.rsp
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\Platform.dll.config
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\Platform.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\Platform.pdb
@@ -98,7 +106,6 @@ C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\Microsoft.Cod
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\Microsoft.CSharp.Core.targets
-C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\Microsoft.Managed.Core.targets
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\Microsoft.VisualBasic.Core.targets
@@ -119,19 +126,12 @@ C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\System.Net.So
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\System.Reflection.Metadata.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\System.Security.Cryptography.Algorithms.dll
-C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\System.Security.Cryptography.Encoding.dll
-C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\System.Security.Cryptography.Primitives.dll
-C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\System.Text.Encoding.CodePages.dll
-C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\System.Threading.Tasks.Extensions.dll
-C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\System.ValueTuple.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\System.Xml.ReaderWriter.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\System.Xml.XmlDocument.dll
-C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\System.Xml.XPath.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\System.Xml.XPath.XDocument.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\vbc.exe
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\vbc.exe.config
-C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\vbc.rsp
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\VBCSCompiler.exe
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\Microsoft.Win32.Primitives.dll
@@ -243,6 +243,7 @@ C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\Microsoft.Web.Infras
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\MySql.Data.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\Newtonsoft.Json.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\Renci.SshNet.dll
+C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\Swashbuckle.Core.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\System.Buffers.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\System.Memory.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\System.Net.Http.Formatting.dll
@@ -258,6 +259,7 @@ C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\System.Web.WebPages.
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\System.Web.WebPages.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\System.Web.WebPages.Razor.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\Ubiety.Dns.Core.dll
+C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\WebActivatorEx.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\WebGrease.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\Zstandard.Net.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\Accounts.pdb
