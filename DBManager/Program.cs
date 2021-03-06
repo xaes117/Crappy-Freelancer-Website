@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,9 @@ namespace DBManager
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Hello");
+            Console.WriteLine(JwtManager.getWebToken("hello@example.com"));
+            Console.ReadLine();
         }
     }
 }
