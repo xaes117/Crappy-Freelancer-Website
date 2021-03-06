@@ -137,39 +137,45 @@ namespace DBManager
         //Select statement
         public List<List<string>> Select(string query)
         {
-            //Create a list to store the result
-            List<List<string>> list = new List<List<string>>();
-
-            //Open connection
-            if (this.OpenConnection() == true)
+            try
             {
-                //Create Command
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-                //Create a data reader and Execute the command
-                MySqlDataReader dataReader = cmd.ExecuteReader();
+                //Create a list to store the result
+                List<List<string>> list = new List<List<string>>();
 
-                //Read the data and store them in the list
-                while (dataReader.Read())
+                //Open connection
+                if (this.OpenConnection() == true)
                 {
-                    list.Add(new List<string>());
-                    for (int i = 0; i < dataReader.FieldCount; i++)
+                    //Create Command
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    //Create a data reader and Execute the command
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
                     {
-                        list[list.Count - 1].Add(dataReader.GetString(i));
+                        list.Add(new List<string>());
+                        for (int i = 0; i < dataReader.FieldCount; i++)
+                        {
+                            list[list.Count - 1].Add(dataReader.GetString(i));
+                        }
                     }
+
+                    //close Data Reader
+                    dataReader.Close();
+
+                    //close Connection
+                    this.CloseConnection();
+
+                    //return list to be displayed
+                    return list;
                 }
-
-                //close Data Reader
-                dataReader.Close();
-
-                //close Connection
-                this.CloseConnection();
-
-                //return list to be displayed
-                return list;
-            }
-            else
+                else
+                {
+                    return list;
+                }
+            } finally
             {
-                return list;
+                this.CloseConnection();
             }
         }
     }

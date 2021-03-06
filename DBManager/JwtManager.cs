@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
@@ -10,15 +11,14 @@ namespace DBManager
 {
     public class JwtManager
     {
-        public static string getWebToken(string email) 
+        public static string getWebToken(string email)
         {
 
             DataManager dataManager = new DataManager();
+            string uid = dataManager.Select("select uid from users where users.email = '" + email + "';")[0][0];
 
-            try {
-                
-                
-                string uid = dataManager.Select("select uid from users where users.email = '" + email + "';")[0][0];
+            try
+            {
 
                 string getLatestTokenQuery = "select web_tokens.jwt, max(web_tokens.expiry) from web_tokens, users u "
                         + "where u.uid = web_tokens.uid and u.email = '" + email + "';";
@@ -28,15 +28,16 @@ namespace DBManager
                 DateTime expiryDate = DateTime.Parse(tokenInfo[0][1]);
                 string hashHMACHex = tokenInfo[0][0];
 
-                if (hashHMACHex == null || expiryDate < DateTime.Now)
+                if (expiryDate < DateTime.Now)
                 {
-                    hashHMACHex = CreateToken(JwtManager.randomString(), email);
-
-                    string newExpiration = DateTime.Now.AddDays(30).ToString("yyyy-MM-dd");
-                    string createJwtQuery = "INSERT INTO `soft7003`.`web_tokens` (`jwt`, `uid`, `expiry`) VALUES ('" + hashHMACHex + "', '" + uid + "', '" + newExpiration + "');";
-                    dataManager.Insert(createJwtQuery);
+                    hashHMACHex = AddTokentoDB(dataManager, email, uid);
                 }
                 return hashHMACHex;
+
+            }
+            catch (SqlNullValueException e)
+            {
+                return AddTokentoDB(dataManager, email, uid);                
             }
             catch (Exception e)
             {
@@ -44,6 +45,16 @@ namespace DBManager
                 return e.ToString();
             }
 
+        }
+
+        private static string AddTokentoDB(DataManager dataManager, string email, string uid)
+        {
+            string hashHMACHex = CreateToken(JwtManager.randomString(), email);
+
+            string newExpiration = DateTime.Now.AddDays(30).ToString("yyyy-MM-dd");
+            string createJwtQuery = "INSERT INTO `soft7003`.`web_tokens` (`jwt`, `uid`, `expiry`) VALUES ('" + hashHMACHex + "', '" + uid + "', '" + newExpiration + "');";
+            dataManager.Insert(createJwtQuery);
+            return hashHMACHex;
         }
 
         private static string CreateToken(string message, string secret)
