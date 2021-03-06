@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DBManager
 {
-    class JwtManager
+    public class JwtManager
     {
         public static string getWebToken(string email) 
         {
