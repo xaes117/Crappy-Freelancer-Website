@@ -15,7 +15,7 @@ namespace Platform.Controllers
         private DataManager dataManager;
 
         // POST: api/Login
-        public string Post(string user, string passHash, bool isRegistration, bool isStudent)
+        public string Post(string email, string username, string passHash, bool isRegistration, bool isStudent)
         {
             DataManager dataManager = new DataManager();
 
@@ -25,10 +25,11 @@ namespace Platform.Controllers
 
                 int uid = Int32.Parse(dataManager.Select(maxUidQuery)[0][0]) + 1;
 
-                string addUserQuery = "INSERT INTO `soft7003`.`users` (`uid`, `name`, `acc_type`) " +
+                string addUserQuery = "INSERT INTO `soft7003`.`users` (`email`, `uid`, `name`, `acc_type`) " +
                     "VALUES(" +
+                    "'" + email + "', " +
                     "'" + uid + "', " +
-                    "'" + user + "', " +
+                    "'" + username + "', " +
                     "'" + (isStudent ? "student" : "business") + "');";
                 string storePassHashQuery = "INSERT INTO `soft7003`.`passwords` (`uid`, `password_hash`) " +
                     "VALUES(" +
@@ -39,7 +40,7 @@ namespace Platform.Controllers
                 dataManager.Insert(storePassHashQuery);
 
             }
-            return user + passHash;
+            return username + passHash;
         }
 
         public LoginController()
