@@ -47,11 +47,26 @@ namespace Platform.Controllers
                 {
                     return e.ToString();
                 }
+            } else
+            {
+                try
+                {
+                    string query = "select p.password_hash from passwords p, users u where p.uid = u.uid and u.email = '" + email + "';";
+
+                    string passwordHash = dataManager.Select(query)[0][0];
+
+                    if (passHash.Equals(passwordHash))
+                    {
+                        return JwtManager.getWebToken(email);
+                    }
+
+                    return "invalid password or email address";
+
+                } catch (Exception e)
+                {
+                    return e.ToString();
+                }
             }
-
-
-
-            return username + passHash;
         }
 
         public LoginController()
