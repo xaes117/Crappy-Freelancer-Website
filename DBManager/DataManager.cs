@@ -43,6 +43,7 @@ namespace DBManager
         //Initialize values
         private void Initialize()
         {
+            // set details for connecting to the database
             server = "localhost";
             database = "soft7003";
             uid = "root";
