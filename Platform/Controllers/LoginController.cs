@@ -19,14 +19,18 @@ namespace Platform.Controllers
         {
             DataManager dataManager = new DataManager();
 
+            // if the user is registering follow this path
             if (isRegistration)
             {
                 try
                 {
+                    // MySQL query to get the most recent user id
                     string maxUidQuery = "SELECT MAX(uid) FROM soft7003.users;";
 
+                    // create new unique user id by incrementing latest user id
                     int uid = Int32.Parse(dataManager.Select(maxUidQuery)[0][0]) + 1;
 
+                    // create string to insert new user into users table
                     string addUserQuery = "INSERT INTO `soft7003`.`users` (`email`, `uid`, `name`, `acc_type`) " +
                         "VALUES(" +
                         "'" + email + "', " +
@@ -34,24 +38,46 @@ namespace Platform.Controllers
                         "'" + username + "', " +
                         "'" + (isStudent ? "student" : "business") + "');";
 
+                    // create string to store the password hash
                     string storePassHashQuery = "INSERT INTO `soft7003`.`passwords` (`uid`, `password_hash`) " +
                         "VALUES(" +
                         "'" + uid + "', " +
                         "'" + passHash + "');";
 
+                    // insert data into database
                     dataManager.Insert(addUserQuery);
                     dataManager.Insert(storePassHashQuery);
 
+                    // return web token 
                     return JwtManager.getWebToken(email);
                 } catch (Exception e)
                 {
                     return e.ToString();
                 }
+            } else
+            {
+                try
+                {
+                    // query to retrieve password hash from database
+                    string query = "select p.password_hash from passwords p, users u where p.uid = u.uid and u.email = '" + email + "';";
+
+                    // execute query and get password hash from database
+                    string passwordHash = dataManager.Select(query)[0][0];
+
+                    // if the password hashes match then return a web token
+                    if (passHash.Equals(passwordHash))
+                    {
+                        return JwtManager.getWebToken(email);
+                    }
+
+                    // return invalid response otherwise
+                    return "invalid password or email address";
+
+                } catch (Exception e)
+                {
+                    return e.ToString();
+                }
             }
-
-
-
-            return username + passHash;
         }
 
         public LoginController()
