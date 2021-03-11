@@ -24,7 +24,7 @@ namespace DBManager
             return false;
         }
 
-        public List<Message> getMessages(Account a, Account b)
+        public virtual List<Message> getMessages(Account a, Account b)
         {
             return null;
         }
@@ -136,7 +136,7 @@ namespace DBManager
         }
 
         //Select statement
-        public List<List<string>> Select(string query)
+        public virtual List<List<string>> Select(string query)
         {
             try
             {
