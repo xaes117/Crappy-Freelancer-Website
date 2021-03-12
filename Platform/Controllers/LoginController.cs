@@ -22,6 +22,11 @@ namespace Platform.Controllers
             // if the user is registering follow this path
             if (isRegistration)
             {
+                if (!this.validateEmail(email))
+                {
+                    return "enter a valid email address";
+                }
+
                 try
                 {
                     // MySQL query to get the most recent user id
@@ -88,6 +93,19 @@ namespace Platform.Controllers
         public LoginController(DataManager manager)
         {
             this.dataManager = manager;
+        }
+
+        private bool validateEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

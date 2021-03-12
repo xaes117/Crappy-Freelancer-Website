@@ -58,9 +58,9 @@ namespace Platform.Tests.Controllers
             LoginController controller = new LoginController();
 
             // Act
-            string out1 = controller.Post("{'type': 'register', 'user': 'invalidEmailFormat', password: 'password'}");
-            string out2 = controller.Post("{'type': 'register', 'user': 'invalid@emailFormat', password: 'password123'}");
-            string out3 = controller.Post("{'type': 'register', 'user': 'valid@email.format', password: 'passwo'}");
+            string out1 = controller.Post("@example.com", "username", "sampleHash", true, true);
+            string out2 = controller.Post("hello.com", "username", "sampleHash", true, true);
+            string out3 = controller.Post("hello@example.com", "username", "sampleHash", true, true);
 
             // Assert
             Assert.AreNotEqual("OK", out1);
