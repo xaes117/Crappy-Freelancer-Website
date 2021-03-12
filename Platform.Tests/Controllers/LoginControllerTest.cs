@@ -51,27 +51,6 @@ namespace Platform.Tests.Controllers
             Assert.AreEqual("invalid password or email address", negativeTest);
         }
 
-
-        /*
-        [TestMethod]
-        public void RegisterPasswordTest()
-        {
-            // Arrange
-            LoginController controller = new LoginController();
-
-            // Act
-            string out1 = controller.Post("{'type': 'register', 'user@email.com': 'username', password: 'password'}");
-            string out2 = controller.Post("{'type': 'register', 'user@email.com': 'username', password: 'password123'}");
-            string out3 = controller.Post("{'type': 'register', 'user@email.com': 'username', password: 'password@'}");
-            string out4 = controller.Post("{'type': 'register', 'user@email.com': 'username', password: 'passwo'}");
-
-            // Assert
-            Assert.AreNotEqual("OK", out1);
-            Assert.AreNotEqual("OK", out2);
-            Assert.AreNotEqual("OK", out3);
-            Assert.AreNotEqual("OK", out4);
-        }
-
         [TestMethod]
         public void RegisterEmailTest()
         {
@@ -109,6 +88,5 @@ namespace Platform.Tests.Controllers
             Assert.AreEqual("OK", user1);
             Assert.AreNotEqual("OK", user2);
         }
-        */
     }
 }
