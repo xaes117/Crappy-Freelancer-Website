@@ -51,27 +51,6 @@ namespace Platform.Tests.Controllers
             Assert.AreEqual("invalid password or email address", negativeTest);
         }
 
-
-        /*
-        [TestMethod]
-        public void RegisterPasswordTest()
-        {
-            // Arrange
-            LoginController controller = new LoginController();
-
-            // Act
-            string out1 = controller.Post("{'type': 'register', 'user@email.com': 'username', password: 'password'}");
-            string out2 = controller.Post("{'type': 'register', 'user@email.com': 'username', password: 'password123'}");
-            string out3 = controller.Post("{'type': 'register', 'user@email.com': 'username', password: 'password@'}");
-            string out4 = controller.Post("{'type': 'register', 'user@email.com': 'username', password: 'passwo'}");
-
-            // Assert
-            Assert.AreNotEqual("OK", out1);
-            Assert.AreNotEqual("OK", out2);
-            Assert.AreNotEqual("OK", out3);
-            Assert.AreNotEqual("OK", out4);
-        }
-
         [TestMethod]
         public void RegisterEmailTest()
         {
@@ -79,36 +58,14 @@ namespace Platform.Tests.Controllers
             LoginController controller = new LoginController();
 
             // Act
-            string out1 = controller.Post("{'type': 'register', 'user': 'invalidEmailFormat', password: 'password'}");
-            string out2 = controller.Post("{'type': 'register', 'user': 'invalid@emailFormat', password: 'password123'}");
-            string out3 = controller.Post("{'type': 'register', 'user': 'valid@email.format', password: 'passwo'}");
+            string out1 = controller.Post("@example.com", "username", "sampleHash", true, true);
+            string out2 = controller.Post("hello.com", "username", "sampleHash", true, true);
+            string out3 = controller.Post("hello@exa@mple.com", "username", "sampleHash", true, true);
 
             // Assert
-            Assert.AreNotEqual("OK", out1);
-            Assert.AreNotEqual("OK", out2);
-            Assert.AreEqual("OK", out3);
+            Assert.AreEqual(LoginController.InvalidEmailMessage, out1);
+            Assert.AreEqual(LoginController.InvalidEmailMessage, out2);
+            Assert.AreEqual(LoginController.InvalidEmailMessage, out3);
         }
-
-
-
-        [TestMethod]
-        public void RegisterUserTest()
-        {
-            // Arrange
-            Mock<DataManager> dataManager = new Mock<DataManager>();
-            dataManager.Setup(x => x.userExists("user1")).Returns(true);
-            dataManager.Setup(x => x.userExists("user2")).Returns(false);
-
-            LoginController controller = new LoginController(dataManager.Object);
-
-            // Act
-            string user1 = controller.Post("{'type': 'register', 'user@email.com': 'user1', password: 'password123@'}");
-            string user2 = controller.Post("{'type': 'register', 'user@email.com': 'user2', password: 'password123@'}");
-
-            // Assert
-            Assert.AreEqual("OK", user1);
-            Assert.AreNotEqual("OK", user2);
-        }
-        */
     }
 }
