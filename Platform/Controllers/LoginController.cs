@@ -11,6 +11,7 @@ namespace Platform.Controllers
 {
     public class LoginController : ApiController
     {
+        public readonly static string InvalidEmailMessage = "enter a valid email address";
 
         private DataManager dataManager;
 
@@ -24,7 +25,7 @@ namespace Platform.Controllers
             {
                 if (!this.validateEmail(email))
                 {
-                    return "enter a valid email address";
+                    return LoginController.InvalidEmailMessage;
                 }
 
                 try

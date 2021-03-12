@@ -47,7 +47,7 @@ namespace DBManager
             server = "localhost";
             database = "soft7003";
             uid = "root";
-            password = "0x38be";
+            password = "";
             string connectionString;
             connectionString = "SERVER=" + server + ";" + "DATABASE=" +
             database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
