@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DBManager;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,6 +10,9 @@ namespace Platform.Controllers
 {
     public class UserProfileController : ApiController
     {
+
+        private DataManager dataManager;
+
         // GET api/<controller>
         public IEnumerable<string> Get()
         {
@@ -16,7 +20,7 @@ namespace Platform.Controllers
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
+        public string Get(string id)
         {
             return "value";
         }
@@ -34,6 +38,16 @@ namespace Platform.Controllers
         // DELETE api/<controller>/5
         public void Delete(int id)
         {
+        }
+
+        public UserProfileController()
+        {
+            this.dataManager = new DataManager();
+        }
+
+        public UserProfileController(DataManager dataManager)
+        {
+            this.dataManager = dataManager;
         }
     }
 }
