@@ -40,6 +40,8 @@ namespace Platform.Tests.Controllers
                         mockBusinessProfile
                     };
                 }
+
+                return null;
             }
         }
 

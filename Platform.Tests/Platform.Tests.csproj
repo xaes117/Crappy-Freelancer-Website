@@ -115,6 +115,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\LandingPageControllerTest.cs" />
     <Compile Include="Controllers\LoginControllerTest.cs" />
+    <Compile Include="Controllers\UserProfilecontrollerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />

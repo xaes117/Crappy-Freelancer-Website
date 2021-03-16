@@ -5,9 +5,27 @@ using System.Web;
 
 namespace Accounts.Assets
 {
-    public abstract class Account
+    public class Account
     {
-        protected List<Review> reviewList;
-        protected List<Message> messageList;
+        public List<Review> reviewList;
+        public List<Message> messageList;
+
+        public string name;
+        public string description;
+        public string accountType;
+        public string profileImageUrl;
+
+        public Account(string name, string description, string accountType, string profileImageUrl)
+        {
+            this.name = name;
+            this.description = description;
+            this.accountType = accountType;
+            this.profileImageUrl = profileImageUrl;
+        }
+
+        public void setReviewList(List<Review> reviewList)
+        {
+            this.reviewList = reviewList;
+        }
     }
 }
