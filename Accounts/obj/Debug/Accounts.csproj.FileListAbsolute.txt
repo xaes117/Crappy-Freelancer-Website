@@ -4,3 +4,4 @@ C:\Users\yegor\Documents\Work\SOFT7003-Project\Accounts\bin\Debug\Accounts.pdb
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Accounts\obj\Debug\Accounts.csproj.CoreCompileInputs.cache
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Accounts\obj\Debug\Accounts.exe
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Accounts\obj\Debug\Accounts.pdb
+C:\Users\yegor\Documents\Work\SOFT7003-Project\Accounts\obj\Debug\Accounts.csprojAssemblyReference.cache
