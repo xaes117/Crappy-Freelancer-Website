@@ -20,7 +20,7 @@ namespace Accounts.Assets
             this.name = name;
             this.description = description;
             this.accountType = accountType;
-            this.profileImageUrl = profileImageUrl;
+            this.profileImageUrl = AccountManager.TrimHTTPHeader(profileImageUrl);
         }
 
         public void setReviewList(List<Review> reviewList)

@@ -17,7 +17,7 @@ namespace Platform.Controllers
         private DataManager dataManager;
 
         // GET api/<controller>/5
-        public string Get(string jwt)
+        public JObject Get(string jwt)
         {
 
             string getProfileQuery = "                         " +
@@ -75,13 +75,17 @@ namespace Platform.Controllers
                         projectList.Add(new Projects(projectOwner, profileImage, businessDescription, projectName, projectDescription));
                     }
 
-                    return JsonConvert.SerializeObject(projectList);
+                    Dictionary<string, List<Projects>> outList = new Dictionary<string, List<Projects>>();
+                    outList.Add(jwt, projectList);
+                    string jsonString = JsonConvert.SerializeObject(outList);
+
+                    return JObject.Parse(jsonString);
 
                 }
             }
             catch (Exception e)
             {
-                return e.ToString();
+                return JObject.Parse(e.ToString());
             }
         }
 

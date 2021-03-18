@@ -17,7 +17,7 @@ namespace Accounts.Assets
         public Projects(string businessName, string profileImageUrl, string businessDeescription, string projectTitle, string projectDescription)
         {
             this.businessName = businessName;
-            this.profileImageUrl = profileImageUrl;
+            this.profileImageUrl = AccountManager.TrimHTTPHeader(profileImageUrl);
             this.businessDeescription = businessDeescription;
             this.projectTitle = projectTitle;
             this.projectDescription = projectDescription;

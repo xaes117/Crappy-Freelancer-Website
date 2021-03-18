@@ -31,7 +31,7 @@ namespace Platform.Controllers
                 try
                 {
                     // MySQL query to get the most recent user id
-                    string maxUidQuery = "SELECT MAX(uid) FROM soft7003.users;";
+                    string maxUidQuery = "SELECT MAX(cast(uid as unsigned)) FROM soft7003.users;";
 
                     // create new unique user id by incrementing latest user id
                     int uid = Int32.Parse(dataManager.Select(maxUidQuery)[0][0]) + 1;

@@ -61,7 +61,10 @@ namespace Platform.Controllers
 
                 account.setReviewList(reviewList);
 
-                return JObject.Parse(JsonConvert.SerializeObject(account));
+                Dictionary<string, Account> outList = new Dictionary<string, Account>();
+                outList.Add(jwt, account);
+
+                return JObject.Parse(JsonConvert.SerializeObject(outList));
 
             } catch (Exception e)
             {
