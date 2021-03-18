@@ -157,7 +157,12 @@ namespace DBManager
                         list.Add(new List<string>());
                         for (int i = 0; i < dataReader.FieldCount; i++)
                         {
-                            list[list.Count - 1].Add(dataReader.GetString(i));
+                            try {
+                                list[list.Count - 1].Add(dataReader.GetString(i));
+                            } catch (Exception e)
+                            {
+                                list[list.Count - 1].Add(String.Empty);
+                            }
                         }
                     }
 
