@@ -295,3 +295,7 @@ C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\obj\Debug\Platform.cspro
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\obj\Debug\Platform.csproj.CopyComplete
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\obj\Debug\Platform.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\obj\Debug\Platform.pdb
+C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\CloudinaryDotNet.dll
+C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\System.Text.Encodings.Web.dll
+C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\CloudinaryDotNet.xml
+C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform\bin\System.Text.Encodings.Web.xml

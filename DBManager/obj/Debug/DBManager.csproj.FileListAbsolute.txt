@@ -130,3 +130,9 @@ C:\Users\yegor\Documents\Work\SOFT7003-Project\DBManager\obj\Debug\DBManager.csp
 C:\Users\yegor\Documents\Work\SOFT7003-Project\DBManager\obj\Debug\DBManager.csproj.CopyComplete
 C:\Users\yegor\Documents\Work\SOFT7003-Project\DBManager\obj\Debug\DBManager.exe
 C:\Users\yegor\Documents\Work\SOFT7003-Project\DBManager\obj\Debug\DBManager.pdb
+C:\Users\yegor\Documents\Work\SOFT7003-Project\DBManager\bin\Debug\CloudinaryDotNet.dll
+C:\Users\yegor\Documents\Work\SOFT7003-Project\DBManager\bin\Debug\Newtonsoft.Json.dll
+C:\Users\yegor\Documents\Work\SOFT7003-Project\DBManager\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\yegor\Documents\Work\SOFT7003-Project\DBManager\bin\Debug\CloudinaryDotNet.xml
+C:\Users\yegor\Documents\Work\SOFT7003-Project\DBManager\bin\Debug\Newtonsoft.Json.xml
+C:\Users\yegor\Documents\Work\SOFT7003-Project\DBManager\bin\Debug\System.Text.Encodings.Web.xml
