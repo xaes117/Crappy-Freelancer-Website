@@ -27,13 +27,66 @@ namespace Platform.Controllers
         }
 
         // POST api/<controller>
-        public void Post([FromBody] string value)
+        public string Post(string jwt, string projectTitle, string projectDescription)
         {
+            string getUidQuery =
+            "select                                      " +
+            "users.uid,                                  " +
+            "users.acc_type                              " +
+            "from users                                  " +
+            "left join web_tokens t on t.uid = users.uid " +
+            "where t.jwt = '" + jwt + "';";
+
+            try
+            {
+                List<List<string>> data = this.dataManager.Select(getUidQuery);
+                string uid = data[0][0];
+                string accountType = data[0][1];
+
+                if (accountType.ToLower().Equals("student"))
+                {
+                    return "students not allowed to post projects";
+                }
+
+                // Set project ID
+                string maxUidQuery = "SELECT MAX(cast(projectid as unsigned)) FROM soft7003.projects;";
+                int projectId = Int32.Parse(this.dataManager.Select(maxUidQuery)[0][0]) + 1;
+
+
+                try
+                {
+                    // create insert string
+                    string insertQuery = "INSERT INTO `soft7003`.`projects` (`projectid`, `owner_id`, `project_name`, `description`) " +
+                    "VALUES (" +
+                    "'" + projectId + "'," +
+                    " '" + uid + "', " +
+                    "'" + projectTitle + "', " +
+                    "'" + projectDescription + "');";
+
+                    // attempt insert
+                    this.dataManager.Insert(insertQuery);
+
+                    return "{ " +
+                        "'jwt' : '" + jwt + "'," +
+                        "'message' : 'Successfully created project'," +
+                        "'projectId' : '" + projectId + "'" +
+                        "}";
+
+                } catch (Exception e)
+                {
+                    return "failed to insert project into database";
+                }
+
+            } catch (Exception e)
+            {
+                return "could not find project owner";
+            }
         }
 
         // PUT api/<controller>/5
-        public void Put(int id, [FromBody] string value)
+        public string Put(int id, string value)
         {
+            return value;
         }
 
         // DELETE api/<controller>/5
