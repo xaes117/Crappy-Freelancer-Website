@@ -15,8 +15,6 @@ namespace Platform.Controllers
         // GET api/<controller>
         public IEnumerable<string> Get()
         {
-
-
             return new string[] { "value1", "value2" };
         }
 
@@ -84,9 +82,36 @@ namespace Platform.Controllers
         }
 
         // PUT api/<controller>/5
-        public string Put(int id, string value)
+        public string Put(int projectId, string jwt, string coverLetter)
         {
-            return value;
+            string getUidQuery =
+            "select                                      " +
+            "users.uid                                   " +
+            "from users                                  " +
+            "left join web_tokens t on t.uid = users.uid " +
+            "where t.jwt = '" + jwt + "';";
+
+            try
+            {
+                string uid = this.dataManager.Select(getUidQuery)[0][0];
+
+                string insertQuery = "INSERT INTO `soft7003`.`proposals` (`project_id`, `student_id`, `cover_letter`) " +
+                "VALUES (" +
+                "'" + projectId + "', " +
+                "'" + uid + "', " +
+                "'" + coverLetter + "');";
+
+                this.dataManager.Insert(insertQuery);
+
+                return "{ " +
+                    "'message' : 'success'," +
+                    "'jwt' : '" + jwt + "' }";
+
+            } catch (Exception e)
+            {
+                return e.ToString();
+            }
+
         }
 
         // DELETE api/<controller>/5
