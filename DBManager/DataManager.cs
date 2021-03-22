@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using Accounts.Assets;
 using MySql.Data.MySqlClient;
 
@@ -47,7 +49,7 @@ namespace DBManager
             server = "localhost";
             database = "soft7003";
             uid = "root";
-            password = "";
+            password = File.ReadLines(@"C:\myFilePath\myConfigFile.txt").First(); // gets the first line from file
             string connectionString;
             connectionString = "SERVER=" + server + ";" + "DATABASE=" +
             database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
@@ -157,7 +159,12 @@ namespace DBManager
                         list.Add(new List<string>());
                         for (int i = 0; i < dataReader.FieldCount; i++)
                         {
-                            list[list.Count - 1].Add(dataReader.GetString(i));
+                            try {
+                                list[list.Count - 1].Add(dataReader.GetString(i));
+                            } catch (Exception e)
+                            {
+                                list[list.Count - 1].Add(String.Empty);
+                            }
                         }
                     }
 

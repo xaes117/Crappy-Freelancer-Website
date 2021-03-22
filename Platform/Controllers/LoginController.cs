@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Web.Http;
 
 using DBManager;
@@ -18,6 +19,8 @@ namespace Platform.Controllers
         // POST: api/Login
         public string Post(string email, string username, string passHash, bool isRegistration, bool isStudent)
         {
+            passHash = this.sha256(passHash);
+
             DataManager dataManager = new DataManager();
 
             // if the user is registering follow this path
@@ -31,7 +34,7 @@ namespace Platform.Controllers
                 try
                 {
                     // MySQL query to get the most recent user id
-                    string maxUidQuery = "SELECT MAX(uid) FROM soft7003.users;";
+                    string maxUidQuery = "SELECT MAX(cast(uid as unsigned)) FROM soft7003.users;";
 
                     // create new unique user id by incrementing latest user id
                     int uid = Int32.Parse(dataManager.Select(maxUidQuery)[0][0]) + 1;
@@ -107,6 +110,18 @@ namespace Platform.Controllers
             {
                 return false;
             }
+        }
+
+        private string sha256(string randomString)
+        {
+            var crypt = new System.Security.Cryptography.SHA256Managed();
+            var hash = new System.Text.StringBuilder();
+            byte[] crypto = crypt.ComputeHash(Encoding.UTF8.GetBytes(randomString));
+            foreach (byte theByte in crypto)
+            {
+                hash.Append(theByte.ToString("x2"));
+            }
+            return hash.ToString();
         }
     }
 }

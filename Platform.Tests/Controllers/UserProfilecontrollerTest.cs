@@ -48,32 +48,29 @@ namespace Platform.Tests.Controllers
         [TestMethod]
         public void GetStudentProfileTest()
         {
-
-            MockDataManager mockDataManager = new MockDataManager();
-
             // Arrange
-            UserProfileController userProfileController = new UserProfileController();
+            MockDataManager mockDataManager = new MockDataManager();
+            UserProfileController userProfileController = new UserProfileController(mockDataManager);
 
             // Act
-            string userProfile = userProfileController.Get("mockStudentJwt");
-            JObject json = JObject.Parse(userProfile);
+            JObject userProfile = userProfileController.Get("mockStudentJwt");
 
             // Assert
-            Assert.AreEqual("student", json["accountType"]);
+            Assert.AreEqual("student", userProfile["mockStudentJwt"]["accountType"]);
         }
 
         [TestMethod]
         public void GetBusinessProfileTest()
         {
             // Arrange
-            UserProfileController userProfileController = new UserProfileController();
+            MockDataManager mockDataManager = new MockDataManager();
+            UserProfileController userProfileController = new UserProfileController(mockDataManager);
 
             // Act
-            string userProfile = userProfileController.Get("mockBusinessJwt");
-            JObject json = JObject.Parse(userProfile);
+            JObject userProfile = userProfileController.Get("mockBusinessJwt");
 
             // Assert
-            Assert.AreEqual("business", json["accountType"]);
+            Assert.AreEqual("business", userProfile["mockBusinessJwt"]["accountType"]);
         }
     }
 }

@@ -10,6 +10,11 @@ namespace Accounts
     {
         static void Main(string[] args)
         {
+
+            string url = "https://hello.com";
+
+            Console.WriteLine(AccountManager.TrimHTTPHeader(url));
+            Console.ReadLine();
         }
     }
 }

@@ -46,6 +46,10 @@ namespace DBManager
                 // so create a new token for the user
                 return AddTokentoDB(dataManager, email, uid);                
             }
+            catch (FormatException e)
+            {
+                return AddTokentoDB(dataManager, email, uid);
+            }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
