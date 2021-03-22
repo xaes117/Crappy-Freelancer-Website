@@ -22,7 +22,7 @@ namespace Platform
                         // resolve correctly. You can workaround this by providing your own code to determine the root URL.
                         //
 
-                        string myCustomBasePath = @"https://286505df30ef.ngrok.io";
+                        string myCustomBasePath = @"https://1d3d7b4e326a.ngrok.io";
 
                         c.RootUrl(req => myCustomBasePath);
 
