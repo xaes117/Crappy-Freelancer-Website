@@ -78,3 +78,7 @@ C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Debug\System.N
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\obj\Debug\Platform.Tests.csproj.CopyComplete
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\obj\Debug\Platform.Tests.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\obj\Debug\Platform.Tests.pdb
+C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Debug\CloudinaryDotNet.dll
+C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Debug\CloudinaryDotNet.xml
+C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Debug\System.Text.Encodings.Web.xml
