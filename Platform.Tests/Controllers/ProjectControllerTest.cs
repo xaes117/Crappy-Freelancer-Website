@@ -7,8 +7,15 @@ namespace Platform.Tests.Controllers
     public class ProjectControllerTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void PostProjectTest()
         {
+
+        }
+
+        [TestMethod]
+        public void ApplyToProjectTest()
+        {
+
         }
     }
 }

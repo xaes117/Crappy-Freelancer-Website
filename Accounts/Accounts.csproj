@@ -48,6 +48,7 @@
     <Compile Include="Assets\Business.cs" />
     <Compile Include="Assets\Message.cs" />
     <Compile Include="Assets\Projects.cs" />
+    <Compile Include="Assets\Proposal.cs" />
     <Compile Include="Assets\Review.cs" />
     <Compile Include="Assets\Student.cs" />
     <Compile Include="Program.cs" />
