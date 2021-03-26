@@ -87,7 +87,7 @@ namespace DBManager
             }
         }
         //Insert statement
-        public void Insert(string query)
+        public virtual void Insert(string query)
         {
             //open connection
             if (this.OpenConnection() == true)
