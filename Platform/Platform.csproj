@@ -212,6 +212,7 @@
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\ProjectManagerController.cs" />
     <Compile Include="Controllers\ProposalDecisionController.cs" />
+    <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Global.asax.cs">

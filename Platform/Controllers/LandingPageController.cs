@@ -36,18 +36,35 @@ namespace Platform.Controllers
                 
                 if (accountType.ToLower().Equals("business"))
                 {
-                    string getStudentsQuery = 
-                    "select                                                     " +
-                    "    users.name,                                            " +
-                    "    users.profile_image_url,                               " +
-                    "    users.description,                                     " +
-                    "	avg(reviews.rating) as average_rating                   " +
-                    "from users                                                 " +
-                    "    left join reviews on reviews.uid_receiver = users.uid  " +
-                    "where users.acc_type = 'student'                           " +
-                    "group by users.uid;                                        ";
+                    string getProjects =
+                    "select                                           " +
+                    "    users.name as 'project owner',               " +
+                    "	 users.profile_image_url,                     " +
+                    "    users.description as 'business description', " +
+                    "	 projects.project_name,                       " +
+                    "    projects.description as 'project description'" +
+                    "from projects                                    " +
+                    "left join users on users.uid = projects.owner_id;";
 
-                    return null;
+                    List<List<string>> projectListFromDB = dataManager.Select(getProjects);
+                    List<Projects> projectList = new List<Projects>();
+
+                    foreach (List<string> projectInfo in projectListFromDB)
+                    {
+                        string projectOwner = projectInfo[0];
+                        string profileImage = projectInfo[1];
+                        string businessDescription = projectInfo[2];
+                        string projectName = projectInfo[3];
+                        string projectDescription = projectInfo[4];
+
+                        projectList.Add(new Projects(projectOwner, profileImage, businessDescription, projectName, projectDescription));
+                    }
+
+                    Dictionary<string, List<Projects>> outList = new Dictionary<string, List<Projects>>();
+                    outList.Add(jwt, projectList);
+                    string jsonString = JsonConvert.SerializeObject(outList);
+
+                    return JObject.Parse(jsonString);
 
                 } else
                 {
