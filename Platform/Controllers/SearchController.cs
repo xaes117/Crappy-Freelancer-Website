@@ -16,9 +16,10 @@ namespace Platform.Controllers
     {
         public enum SearchCategory
         {
-            Business,
+            Project,
             Students,
-            Project
+            Business,
+            Error
         }
 
         private DataManager dataManager;
@@ -26,7 +27,7 @@ namespace Platform.Controllers
         // GET: api/Search/5
         public JObject Get(SearchCategory searchCategory, string searchQuery)
         {
-            if (searchCategory == SearchCategory.Business)
+            if (searchCategory == SearchCategory.Project)
             {
                 List<Projects> projectList = this.getProjects(searchQuery);
                 return JObject.Parse("{ \"projects\": " + JsonConvert.SerializeObject(projectList) + "}");
@@ -35,20 +36,12 @@ namespace Platform.Controllers
                 List<Account> accountList = this.getAccounts(searchQuery, false);
                 return JObject.Parse("{ \"students\": " + JsonConvert.SerializeObject(accountList) + "}");
             }
-            else if (searchCategory == SearchCategory.Project)
+            else if (searchCategory == SearchCategory.Business)
             {
                 List<Account> accountList = this.getAccounts(searchQuery, true);
                 return JObject.Parse("{ \"businesses\": " + JsonConvert.SerializeObject(accountList) + "}");
             }
-            else
-            {
-                return JObject.Parse("{ \"error\" : \"search term not valid\" }");
-            }
-        }
-
-        // POST: api/Search
-        public void Post([FromBody] string value)
-        {
+            return JObject.Parse("{ \"error\" : \"search term not valid\" }");
         }
 
         private List<Projects> getProjects(string searchTerm)
