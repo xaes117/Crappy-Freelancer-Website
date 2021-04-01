@@ -29,7 +29,10 @@ namespace Platform.Controllers
                 // iterate through each proposal and add to list
                 foreach (List<string> p in proposals)
                 {
-                    Proposal proposal = new Proposal(Int32.Parse(p[0]), Int32.Parse(p[1]), p[2], p[3], p[4], p[5], p[6], p[7], p[8]);
+                    Proposal proposal = new Proposal(
+                        Int32.Parse(p[0]), 
+                        Int32.Parse(p[1]), 
+                        p[2], p[3], p[4], p[5], p[6], p[7], p[8]);
                     proposalList.Add(proposal);
                 }
 
@@ -45,12 +48,6 @@ namespace Platform.Controllers
             {
                 return JObject.Parse(e.ToString());
             }
-        }
-
-        // POST api/<controller>
-        public void Post(int proposalId, bool acceptProposal)
-        {
-            
         }
 
         // PUT api/<controller>/5
@@ -77,19 +74,10 @@ namespace Platform.Controllers
                             "'message' : 'OK'"           +
                         "}";
             }
-            catch (NullReferenceException e)
-            {
-                return e.ToString();
-            }
             catch (Exception e)
             {
                 return e.ToString();
             }
-        }
-
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
         }
 
         private string VerifyQuery(string jwt , int proposalId)
@@ -108,10 +96,12 @@ namespace Platform.Controllers
         {
             if (isAccepted)
             {
-                return "UPDATE `soft7003`.`proposals` SET `status` = 'accepted' WHERE (`proposal_id` = '" + proposalId + "');";
+                return "UPDATE `soft7003`.`proposals` SET `status` = 'accepted' " +
+                    "WHERE (`proposal_id` = '" + proposalId + "');";
             } else
             {
-                return "UPDATE `soft7003`.`proposals` SET `status` = 'rejected' WHERE (`proposal_id` = '" + proposalId + "');";
+                return "UPDATE `soft7003`.`proposals` SET `status` = 'rejected' " +
+                    "WHERE (`proposal_id` = '" + proposalId + "');";
             }
         }
 

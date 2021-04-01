@@ -104,7 +104,7 @@ namespace DBManager
         }
 
         //Update statement
-        public void Update(string query)
+        public virtual void Update(string query)
         {
             //Open connection
             if (this.OpenConnection() == true)
