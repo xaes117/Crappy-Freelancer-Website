@@ -114,6 +114,7 @@
     <Compile Include="Controllers\MessageControllerTest.cs" />
     <Compile Include="Controllers\ProjectControllerTest.cs" />
     <Compile Include="Controllers\ProposalDecisionControllerTest.cs" />
+    <Compile Include="Controllers\ProjectManagerControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\LandingPageControllerTest.cs" />
     <Compile Include="Controllers\LoginControllerTest.cs" />
