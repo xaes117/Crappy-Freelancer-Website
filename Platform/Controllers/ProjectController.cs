@@ -12,19 +12,8 @@ namespace Platform.Controllers
     {
         private DataManager dataManager;
 
-        // GET api/<controller>
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<controller>/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
         // POST api/<controller>
+        // Post a project
         public string Post(string jwt, string projectTitle, string projectDescription)
         {
             string getUidQuery =
@@ -61,6 +50,11 @@ namespace Platform.Controllers
                     "'" + projectTitle + "', " +
                     "'" + projectDescription + "');";
 
+                    if (Int32.Parse(uid) < 0)
+                    {
+                        throw new Exception("Cannot have negative uids");
+                    }
+
                     // attempt insert
                     this.dataManager.Insert(insertQuery);
 
@@ -72,7 +66,7 @@ namespace Platform.Controllers
 
                 } catch (Exception e)
                 {
-                    return "failed to insert project into database";
+                    throw e;
                 }
 
             } catch (Exception e)
@@ -82,6 +76,7 @@ namespace Platform.Controllers
         }
 
         // PUT api/<controller>/5
+        // Submit a proposal
         public string Put(int projectId, string jwt, string coverLetter)
         {
             string getUidQuery =
@@ -112,11 +107,6 @@ namespace Platform.Controllers
                 return e.ToString();
             }
 
-        }
-
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
         }
 
         public ProjectController()
