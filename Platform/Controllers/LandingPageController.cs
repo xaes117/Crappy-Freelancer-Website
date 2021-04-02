@@ -21,7 +21,11 @@ namespace Platform.Controllers
         {
 
             string getProfileQuery = "                         " +
-                "select users.* from users                     " +
+                "select users.name,                            " +
+                "users.description,                           " +
+                "users.acc_type,                               " +
+                "users.profile_image_url                       " +
+                "from users                                    " +
                 "left join web_tokens wt on wt.uid = users.uid " +
                 "where wt.jwt = '" + jwt + "';                 ";
 
@@ -29,10 +33,10 @@ namespace Platform.Controllers
             {
 
                 List<string> profile = this.dataManager.Select(getProfileQuery)[0];
-                string name = profile[1];
-                string userDescription = profile[2];
-                string accountType = profile[3];
-                string profileImageUrl = profile[5];
+                string name = profile[0];
+                string userDescription = profile[1];
+                string accountType = profile[2];
+                string profileImageUrl = profile[3];
                 
                 if (accountType.ToLower().Equals("business"))
                 {
@@ -44,7 +48,8 @@ namespace Platform.Controllers
                     "	 projects.project_name,                       " +
                     "    projects.description as 'project description'" +
                     "from projects                                    " +
-                    "left join users on users.uid = projects.owner_id;";
+                    "left join users on users.uid = projects.owner_id " +
+                    "where users.name = '" + name + "';";
 
                     List<List<string>> projectListFromDB = dataManager.Select(getProjects);
                     List<Projects> projectList = new List<Projects>();
@@ -60,8 +65,10 @@ namespace Platform.Controllers
                         projectList.Add(new Projects(projectOwner, profileImage, businessDescription, projectName, projectDescription));
                     }
 
-                    Dictionary<string, List<Projects>> outList = new Dictionary<string, List<Projects>>();
-                    outList.Add(jwt, projectList);
+                    Dictionary<string, Object> outList = new Dictionary<string, Object>();
+                    outList.Add("jwt", jwt);
+                    outList.Add("profile", profile);
+                    outList.Add("projects", projectList);
                     string jsonString = JsonConvert.SerializeObject(outList);
 
                     return JObject.Parse(jsonString);
@@ -92,8 +99,10 @@ namespace Platform.Controllers
                         projectList.Add(new Projects(projectOwner, profileImage, businessDescription, projectName, projectDescription));
                     }
 
-                    Dictionary<string, List<Projects>> outList = new Dictionary<string, List<Projects>>();
-                    outList.Add(jwt, projectList);
+                    Dictionary<string, Object> outList = new Dictionary<string, Object>();
+                    outList.Add("jwt", jwt);
+                    outList.Add("profile", profile);
+                    outList.Add("projects", projectList);
                     string jsonString = JsonConvert.SerializeObject(outList);
 
                     return JObject.Parse(jsonString);
@@ -104,21 +113,6 @@ namespace Platform.Controllers
             {
                 return JObject.Parse(e.ToString());
             }
-        }
-
-        // POST api/<controller>
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
         }
 
         public LandingPageController()
