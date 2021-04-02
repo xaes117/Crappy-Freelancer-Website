@@ -37,12 +37,16 @@ namespace Platform.Controllers
         {
             try
             {
+                if (review_giver < 0 || review_receiver < 0)
+                {
+                    throw new Exception("Cannot have negative ids");
+                }
+
                 // call function to insert new review
                 this.insertReview(review_giver, review_receiver, rating, reviewDescription);
                 return "review successfully created";
-            } catch (Exception e)
-            {
-                return "review not successful";
+            } catch (Exception e) {
+                return e.ToString();
             }
         }
 
