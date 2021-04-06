@@ -45,7 +45,8 @@ namespace Platform.Controllers
                 // call function to insert new review
                 this.insertReview(review_giver, review_receiver, rating, reviewDescription);
                 return "review successfully created";
-            } catch (Exception e) {
+            } catch (Exception e) 
+            {
                 return e.ToString();
             }
         }

@@ -16,26 +16,6 @@ namespace DBManager
         private string uid;
         private string password;
 
-        public List<List<string>> getUserInfo()
-        {
-            return this.Select("select * from users");
-        }
-
-        public Boolean userExists(string username)
-        {
-            return false;
-        }
-
-        public virtual List<Message> getMessages(Account a, Account b)
-        {
-            return null;
-        }
-
-        public List<Message> getMessages(Account a, Account b, int number)
-        {
-            return null;
-        }
-
         //Constructor
         public DataManager()
         {
@@ -125,7 +105,7 @@ namespace DBManager
         }
 
         //Delete statement
-        public void Delete()
+        /*public void Delete()
         {
             string query = "DELETE FROM tableinfo WHERE name='John Smith'";
 
@@ -135,7 +115,7 @@ namespace DBManager
                 cmd.ExecuteNonQuery();
                 this.CloseConnection();
             }
-        }
+        }*/
 
         //Select statement
         public virtual List<List<string>> Select(string query)

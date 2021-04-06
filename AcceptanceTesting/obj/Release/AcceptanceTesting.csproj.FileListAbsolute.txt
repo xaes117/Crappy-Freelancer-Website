@@ -1,0 +1,10 @@
+C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\bin\Release\AcceptanceTesting.exe.config
+C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\bin\Release\AcceptanceTesting.exe
+C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\bin\Release\AcceptanceTesting.pdb
+C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\bin\Release\WebDriver.dll
+C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\bin\Release\WebDriver.xml
+C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\obj\Release\AcceptanceTesting.csprojAssemblyReference.cache
+C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\obj\Release\AcceptanceTesting.csproj.CoreCompileInputs.cache
+C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\obj\Release\AcceptanceTesting.csproj.CopyComplete
+C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\obj\Release\AcceptanceTesting.exe
+C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\obj\Release\AcceptanceTesting.pdb
