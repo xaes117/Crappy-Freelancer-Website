@@ -19,7 +19,28 @@ namespace Platform.Tests.Controllers
         {
             public override List<List<string>> Select(string query)
             {
-                // Arrange
+                if (query.Contains("SELECT MAX(cast(uid as unsigned))"))
+                {
+                    return new List<List<string>>
+                    {
+                        new List<string>
+                        {
+                            "1"
+                        }
+                    };
+                }
+
+                if (query.Contains("select web_tokens.jwt, max(web_tokens.expiry)"))
+                {
+                    return new List<List<string>>
+                    {
+                        new List<string>
+                        {
+                            "mockhashHMACHex", "9999-01-01"
+                        }
+                    };
+                }
+
                 string mockHash = "gh942gh20983uf02";
 
                 // Create mock hash data structure
@@ -30,10 +51,30 @@ namespace Platform.Tests.Controllers
 
                 return mockReturnStructure;
             }
+
+            public override void Insert(string query)
+            {
+                // do nothing
+            }
         }
 
         [TestMethod]
-        public void LoginTest()
+        public void RegisterSuccessTest()
+        {
+            // Arrange
+            MockDataManager mockDataManager = new MockDataManager();
+            JwtManager.dataManager = mockDataManager;
+            LoginController controller = new LoginController(mockDataManager);
+
+            // Act
+            string response = controller.Post("mock@email.com", "mockUsername", "mockHash", true, true);
+
+            // Assert
+            Assert.IsTrue(response.Equals("mockhashHMACHex"));
+        }
+
+        [TestMethod]
+        public void LoginFailTest()
         {
             MockDataManager mockDataManager = new MockDataManager();
 

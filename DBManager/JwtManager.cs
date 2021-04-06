@@ -11,11 +11,11 @@ namespace DBManager
 {
     public class JwtManager
     {
+        // create data manager object
+        public static DataManager dataManager = new DataManager();
+
         public static string getWebToken(string email)
         {
-            // create data manager object
-            DataManager dataManager = new DataManager();
-
             // get the user id from the database by email address
             string uid = dataManager.Select("select uid from users where users.email = '" + email + "';")[0][0];
 

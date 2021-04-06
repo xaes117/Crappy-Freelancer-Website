@@ -21,8 +21,6 @@ namespace Platform.Controllers
         {
             passHash = this.sha256(passHash);
 
-            DataManager dataManager = new DataManager();
-
             // if the user is registering follow this path
             if (isRegistration)
             {
@@ -37,7 +35,7 @@ namespace Platform.Controllers
                     string maxUidQuery = "SELECT MAX(cast(uid as unsigned)) FROM soft7003.users;";
 
                     // create new unique user id by incrementing latest user id
-                    int uid = Int32.Parse(dataManager.Select(maxUidQuery)[0][0]) + 1;
+                    int uid = Int32.Parse(this.dataManager.Select(maxUidQuery)[0][0]) + 1;
 
                     // create string to insert new user into users table
                     string addUserQuery = "INSERT INTO `soft7003`.`users` (`email`, `uid`, `name`, `acc_type`) " +

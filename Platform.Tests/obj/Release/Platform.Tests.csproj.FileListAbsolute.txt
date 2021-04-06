@@ -25,7 +25,6 @@ C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Release\System
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Release\System.Web.WebPages.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Release\System.Web.WebPages.Razor.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Release\MySql.Data.dll
-C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Release\CloudinaryDotNet.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Release\WebActivatorEx.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Release\System.Web.Optimization.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Release\Swashbuckle.Core.dll
@@ -35,7 +34,6 @@ C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Release\K4os.C
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Release\BouncyCastle.Crypto.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Release\Ubiety.Dns.Core.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Release\Renci.SshNet.dll
-C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Release\System.Text.Encodings.Web.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Release\System.Memory.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Release\System.Buffers.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Release\K4os.Compression.LZ4.dll
@@ -65,13 +63,11 @@ C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Release\System
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Release\System.Web.WebPages.Deployment.xml
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Release\System.Web.WebPages.Razor.xml
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Release\MySql.Data.xml
-C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Release\CloudinaryDotNet.xml
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Release\System.Web.Optimization.xml
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Release\Google.Protobuf.pdb
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Release\Google.Protobuf.xml
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Release\K4os.Compression.LZ4.Streams.xml
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Release\Renci.SshNet.xml
-C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Release\System.Text.Encodings.Web.xml
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Release\System.Memory.xml
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Release\System.Buffers.xml
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Platform.Tests\bin\Release\K4os.Compression.LZ4.xml
