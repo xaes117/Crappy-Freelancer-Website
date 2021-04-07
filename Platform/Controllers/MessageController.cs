@@ -15,14 +15,14 @@ namespace Platform.Controllers
         private DataManager dataManager;
 
         // GET: api/Message/5
-        public List<Message> Get(string query)
+        public List<Message> Get(string jwt)
         {
             // return last N messages
             return null; 
         }
 
         // POST: api/Message
-        public Boolean Post([FromBody]string value)
+        public Boolean Post(string jwt, int sender, int receiver, string message)
         {
             return false;
         }
