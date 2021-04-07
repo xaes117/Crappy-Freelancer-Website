@@ -16,40 +16,76 @@ namespace Platform.Tests.Controllers
     [TestClass]
     public class MessageControllerTest
     {
+        private class MockDataManager : DataManager
+        {
+            public override List<List<string>> Select(string query)
+            {
+                if (query.Contains("select") && query.Contains("from messages"))
+                {
+                    return new List<List<string>>
+                    {
+                        new List<string>
+                        {
+                            "1", "2", "mockMessage", "mockTimestampe"
+                        }
+                    };
+                }
+
+                return null;
+            }
+
+            public override void Insert(string query)
+            {
+                // do nothing
+            }
+        }
 
         [TestMethod]
         public void GetMessageTest()
         {
-/*            List<Message> messages = new List<Message>();
-
             // Arrange
-            Mock<DataManager> dataManager = new Mock<DataManager>();
-            dataManager.Setup(x => x.getMessages(It.IsAny<Account>(),It.IsAny<Account>())).Returns(messages);
-            
-            MessageController controller = new MessageController(dataManager.Object);
+            MockDataManager dataManager = new MockDataManager();
+            MessageController controller = new MessageController(dataManager);
+            string mockJwt = "mockJwt";
 
             // Act
-            List<Message> messageList = controller.Get("21343-10391-5");
+            List<Message> messageList = controller.Get(mockJwt);
+            Message firstMessage = messageList[0];
 
             // Assert
-            Assert.AreEqual(messageList, messages);*/
+            Assert.AreEqual(firstMessage.getAccount(), 1);
+            Assert.AreEqual(firstMessage.getAccount(), 2);
+            Assert.IsTrue(firstMessage.getMessage().Equals("mockMessage"));
         }
 
         [TestMethod]
-        public void MessageTest()
+        public void PostSuccessMessageTest()
         {
             // Arrange
-            MessageController controller = new MessageController();
+            MockDataManager dataManager = new MockDataManager();
+            MessageController controller = new MessageController(dataManager);
+            string mockJwt = "mockJwt";
 
             // Act
-            Boolean xss = controller.Post("<script>");
-            Boolean sql1 = controller.Post("DROP TABLE table_name;");
-            Boolean sql2 = controller.Post("SELECT * FROM table_name;");
+            bool isSuccess = controller.Post(mockJwt, 1, 2, "mockMessage");
+            
+            // Assert
+            Assert.IsTrue(isSuccess);
+        }
+
+        [TestMethod]
+        public void PostFailMessageTest()
+        {
+            // Arrange
+            MockDataManager dataManager = new MockDataManager();
+            MessageController controller = new MessageController(dataManager);
+            string mockJwt = "mockJwt";
+
+            // Act
+            bool isSuccess = controller.Post(mockJwt, 1, 1, "mockMessage");
 
             // Assert
-            Assert.IsFalse(xss);
-            Assert.IsFalse(sql1);
-            Assert.IsFalse(sql2);
+            Assert.IsFalse(isSuccess);
         }
     }
 }

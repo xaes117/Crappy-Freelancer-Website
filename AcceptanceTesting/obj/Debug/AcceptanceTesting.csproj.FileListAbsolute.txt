@@ -27,4 +27,3 @@ C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\obj\Debug\Accep
 C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\obj\Debug\AcceptanceTesting.csproj.CopyComplete
 C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\obj\Debug\AcceptanceTesting.exe
 C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\obj\Debug\AcceptanceTesting.pdb
-C:\Users\yegor\Documents\Work\SOFT7003-Project\AcceptanceTesting\obj\Debug\AcceptanceTesting.csprojAssemblyReference.cache

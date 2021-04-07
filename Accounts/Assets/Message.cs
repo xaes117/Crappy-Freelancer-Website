@@ -2,11 +2,11 @@
 {
     public class Message
     {
-        private Account accountHolder;
-        private Account accountCommunicator;
+        private int accountHolder;
+        private int accountCommunicator;
         private string message;
         private string timestamp;
-        public Message(Account accountHolder, Account accountCommunicator, string message, string timestamp)
+        public Message(int accountHolder, int accountCommunicator, string message, string timestamp)
         {
             this.accountHolder = accountHolder;
             this.accountCommunicator = accountCommunicator;
@@ -14,12 +14,12 @@
             this.timestamp = timestamp;
         }
 
-        public Account getAccount()
+        public int getAccount()
         {
             return this.accountHolder;
         }
 
-        public Account getCommunicator()
+        public int getCommunicator()
         {
             return this.accountCommunicator;
         }
