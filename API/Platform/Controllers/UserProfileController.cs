@@ -77,8 +77,13 @@ namespace Platform.Controllers
         }
 
         // POST api/<controller>
-        public void Post([FromBody] string value)
+        public void Post(string jwt, string username, string description)
         {
+            string query = "UPDATE `soft7003`.`users`                                                   " +
+                           "JOIN web_tokens wt ON wt.uid = users.uid                                    " +
+                           "SET `name` = '" + username + "', `description` = '" + description + "'      " +
+                           "WHERE wt.jwt = '" + jwt + "';                                               ";
+            this.dataManager.Insert(query);
         }
 
         // PUT api/<controller>/5
