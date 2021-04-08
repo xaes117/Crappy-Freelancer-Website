@@ -30,13 +30,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html">Home</a>
+                </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
+                    <a class="nav-link" href="#">Profile
                         <span class="sr-only">(current)</span>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="profile.html">Profile</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Services</a>
@@ -49,47 +49,36 @@
     </div>
 </nav>
 
-<!-- Header -->
-<header class="bg-primary py-5 mb-5">
-    <div class="container h-100">
-        <div class="row h-100 align-items-center">
-            <div class="col-lg-12">
-                <h1 class="display-4 text-white mt-5 mb-2">Business Name or Tagline</h1>
-                <p class="lead mb-5 text-white-50">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non
-                    possimus ab labore provident mollitia. Id assumenda voluptate earum corporis facere quibusdam
-                    quisquam iste ipsa cumque unde nisi, totam quas ipsam.</p>
-            </div>
-        </div>
-    </div>
-</header>
 
 <!-- Page Content -->
-<div class="container">
+<div class="container" style="padding-top: 20px;">
 
     <div class="row">
         <div class="col-md-8 mb-5">
             <h2>Your account details</h2>
             <hr>
-            <div id="home-page-userinfo">
+            <div id="user-profile-userinfo">
 
             </div>
-            <a href="profile.html" class="btn btn-primary">View Profile</a>
+            <a href="profile.html" class="btn btn-primary">Edit Profile</a>
         </div>
         <div class="col-md-4 mb-5">
             <h2>Profile Image</h2>
             <hr>
-            <div id="home-page-profile-image"></div>
+            <div id="user-profile-profile-image"></div>
             <!--            <address>-->
-<!--                <abbr title="Phone">P:</abbr>-->
-<!--                (123) 456-7890-->
-<!--                <br>-->
-<!--                <abbr title="Email">E:</abbr>-->
-<!--                <a href="mailto:#">name@example.com</a>-->
-<!--            </address>-->
+            <!--                <abbr title="Phone">P:</abbr>-->
+            <!--                (123) 456-7890-->
+            <!--                <br>-->
+            <!--                <abbr title="Email">E:</abbr>-->
+            <!--                <a href="mailto:#">name@example.com</a>-->
+            <!--            </address>-->
         </div>
     </div>
     <!-- /.row -->
-    <div class="row" id="home-page-usercard">
+    <h2>Your past projects</h2>
+    <hr>
+    <div class="row" id="user-profile-reviewcard">
 
     </div>
 
@@ -115,51 +104,57 @@
         redirect: 'follow'
     };
 
-    jwt = encodeURIComponent(sessionStorage.getItem("jwt"));
+    jwt = sessionStorage.getItem("jwt");
 
-    query = "/api/LandingPage?jwt=" + jwt;
+    // encode jwt after variable declared as original jwt will need to be used later on
+    query = "/api/UserProfile?jwt=" + encodeURIComponent(jwt);
 
-    let dataManager = new DataManager()
+    let dataManager = new DataManager("", "")
     dataManager.send_request(requestOptions, query, function (response) {
         response = JSON.parse(response)
-        let projects = response['projects']
 
+        let reviews = response[jwt]['reviewList']
         let htmlTemplate = "";
 
-        for (let i = 0; i < projects.length; i++) {
-            let project = projects[i]
-            let businessName = project['businessName']
-            let businessDescription = project['businessDeescription']
-            let projectTitle = project['projectTitle']
-            let projectDescription = project['projectDescription']
+        let totalRatings = 0;
+
+        for (let i = 0; i < reviews.length; i++) {
+            let review = reviews[i]
+            let reviewer = review['reviewer']
+            let rating = review['rating']
+            let description = review['description']
 
             htmlTemplate += `<div class="col-md-4 mb-5">
                                  <div class="card h-100">
                                      <img class="card-img-top" src="" alt="">
                                      <div class="card-body">
-                                         <h4 class="card-title">${businessName}</h4>
-                                         <p class="card-text">${businessDescription}</p>
-                                         <h4 class="card-title">${projectTitle}</h4>
-                                         <p class="card-text">${projectDescription}</p>
+                                         <h4 class="card-title">Reviewer: ${reviewer}</h4>
+                                         <p class="card-text">Rating: ${rating}/5</p>
+                                         <p class="card-text">Comments: ${description}</p>
                                      </div>
                                      <div class="card-footer">
                                          <a href="#" class="btn btn-primary">Find Out More!</a>
                                      </div>
                                  </div>
                              </div>`;
+
+            totalRatings += rating
         }
 
-        $("#home-page-usercard").html(htmlTemplate);
+        $("#user-profile-reviewcard").html(htmlTemplate);
 
-        let profile = response['profile']
-        htmlTemplate = `<p>Name: ${profile[0]}</p>
-                        <p>Account Type: ${profile[2]}</p>
-                        <p>Description/Skills: ${profile[1]}</p>`
-        $("#home-page-userinfo").html(htmlTemplate);
+        let averageRating = totalRatings/reviews.length;
 
-        let profileImageUrl = profile[3];
+        let profile = response[jwt]
+        htmlTemplate = `<p>Name: ${profile['name']}</p>
+                        <p>Account Type: ${profile['accountType']}</p>
+                        <p>Description/Skills: ${profile['description']}</p>
+                        <p>Average Rating: ${averageRating}</p>`
+        $("#user-profile-userinfo").html(htmlTemplate);
+
+        let profileImageUrl = "https://" + profile['profileImageUrl']
         htmlTemplate = `<img class="card-img-top" src="${profileImageUrl}" alt="" width="100" height=auto>`
-        $("#home-page-profile-image").html(htmlTemplate);
+        $("#user-profile-profile-image").html(htmlTemplate);
     });
 </script>
 

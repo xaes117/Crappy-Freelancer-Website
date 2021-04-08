@@ -21,7 +21,11 @@ namespace Platform.Controllers
         {
 
             string getProfileQuery = "                         " +
-                "select users.* from users                     " +
+                "select users.name,                            " +
+                "users.description,                            " +
+                "users.acc_type,                               " +
+                "users.profile_image_url                       " +
+                "from users                                    " +
                 "left join web_tokens wt on wt.uid = users.uid " +
                 "where wt.jwt = '" + jwt + "';                 ";
 
@@ -29,7 +33,7 @@ namespace Platform.Controllers
             "select                                                          " +
             "reviewer.name as 'reviewer',                                    " +
             "reviews.rating,                                                 " +
-            "reviews.descrition                                              " +
+            "reviews.description                                             " +
             "from reviews                                                    " +
             "left join users on users.uid = reviews.uid_receiver             " +
             "left join users reviewer on reviewer.uid = reviews.uid_reviewer " +
@@ -41,10 +45,10 @@ namespace Platform.Controllers
             {
 
                 List<string> profile = this.dataManager.Select(getProfileQuery)[0];
-                string name = profile[1];
-                string userDescription = profile[2];
-                string accountType = profile[3];
-                string profileImageUrl = profile[5];
+                string name = profile[0];
+                string userDescription = profile[1];
+                string accountType = profile[2];
+                string profileImageUrl = profile[3];
 
                 Account account = new Account(name, userDescription, accountType, profileImageUrl);
                 

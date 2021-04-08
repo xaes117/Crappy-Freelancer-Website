@@ -7,7 +7,6 @@ C:\Users\yegor\Documents\Work\SOFT7003-Project\Accounts\obj\Debug\Accounts.pdb
 C:\Users\yegor\Documents\Work\SOFT7003-Project\API\Accounts\bin\Debug\Accounts.exe.config
 C:\Users\yegor\Documents\Work\SOFT7003-Project\API\Accounts\bin\Debug\Accounts.exe
 C:\Users\yegor\Documents\Work\SOFT7003-Project\API\Accounts\bin\Debug\Accounts.pdb
-C:\Users\yegor\Documents\Work\SOFT7003-Project\API\Accounts\obj\Debug\Accounts.csprojAssemblyReference.cache
 C:\Users\yegor\Documents\Work\SOFT7003-Project\API\Accounts\obj\Debug\Accounts.csproj.CoreCompileInputs.cache
 C:\Users\yegor\Documents\Work\SOFT7003-Project\API\Accounts\obj\Debug\Accounts.exe
 C:\Users\yegor\Documents\Work\SOFT7003-Project\API\Accounts\obj\Debug\Accounts.pdb
