@@ -5,3 +5,10 @@ C:\Users\yegor\Documents\Work\SOFT7003-Project\Accounts\obj\Release\Accounts.csp
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Accounts\obj\Release\Accounts.csproj.CoreCompileInputs.cache
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Accounts\obj\Release\Accounts.exe
 C:\Users\yegor\Documents\Work\SOFT7003-Project\Accounts\obj\Release\Accounts.pdb
+C:\Users\yegor\Documents\Work\SOFT7003-Project\API\Accounts\bin\Release\Accounts.exe.config
+C:\Users\yegor\Documents\Work\SOFT7003-Project\API\Accounts\bin\Release\Accounts.exe
+C:\Users\yegor\Documents\Work\SOFT7003-Project\API\Accounts\bin\Release\Accounts.pdb
+C:\Users\yegor\Documents\Work\SOFT7003-Project\API\Accounts\obj\Release\Accounts.csprojAssemblyReference.cache
+C:\Users\yegor\Documents\Work\SOFT7003-Project\API\Accounts\obj\Release\Accounts.csproj.CoreCompileInputs.cache
+C:\Users\yegor\Documents\Work\SOFT7003-Project\API\Accounts\obj\Release\Accounts.exe
+C:\Users\yegor\Documents\Work\SOFT7003-Project\API\Accounts\obj\Release\Accounts.pdb
