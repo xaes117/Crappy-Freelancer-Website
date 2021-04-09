@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Business Frontpage - Start Bootstrap Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/business-frontpage.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Start Bootstrap</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Profile
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<!-- Page Content -->
+<div class="container" style="padding-top: 20px;">
+
+    <div id="edit-profile-form">
+
+    </div>
+
+    <button class="btn btn-primary" onclick="myFunction()">Save</button>
+    <a class="btn btn-primary" href="profile.html">Cancel</a>
+    <script>
+        function myFunction() {
+            let username = document.getElementById("edit-username").value;
+            let description = document.getElementById("edit-description").value;
+            console.log(username)
+            console.log(description)
+            let requestOptions = {
+                method: 'POST',
+                redirect: 'follow'
+            };
+            let query = `/api/UserProfile?jwt=${encodeURIComponent(jwt)}&username=${username}&description=${description}`;
+            dataManager.send_request(requestOptions, query, function () {
+                window.location = "profile.html";
+            })
+        }
+    </script>
+    <hr>
+</div>
+<!-- /.container -->
+
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    </div>
+    <!-- /.container -->
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="js/DataManager.js"></script>
+
+<script>
+    let requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+
+    jwt = sessionStorage.getItem("jwt");
+
+    // encode jwt after variable declared as original jwt will need to be used later on
+    query = "/api/UserProfile?jwt=" + encodeURIComponent(jwt);
+
+    let dataManager = new DataManager("", "")
+    dataManager.send_request(requestOptions, query, function (response) {
+        response = JSON.parse(response)
+        let profile = response[jwt]
+        console.log(profile)
+        let htmlTemplate = `<form>
+                            Name: <input type="text" name="fname" value="${profile['name']}" class="form-row" id="edit-username"><br>
+                            Description/Skills: <input type="text" name="lname" value="${profile['description']}" class="form-row" id="edit-description"><br><br>
+                            </form>`
+        $("#edit-profile-form").html(htmlTemplate)
+    });
+</script>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

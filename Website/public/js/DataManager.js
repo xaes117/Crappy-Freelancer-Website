@@ -1,8 +1,5 @@
 class DataManager {
-    constructor(name, year) {
-        this.name = name;
-        this.year = year;
-
+    constructor() {
         this.baseUrl = "https://1b07acfef63b.ngrok.io";
     }
 

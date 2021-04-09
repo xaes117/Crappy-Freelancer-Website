@@ -76,14 +76,14 @@ namespace Platform.Controllers
                 } else
                 {
                     string getProjects = 
-                    "select                                           " +
-                    "    users.name as 'project owner',               " +
-                    "	users.profile_image_url,                      " +
-                    "    users.description as 'business description', " +
-                    "	projects.project_name,                        " +
-                    "    projects.description as 'project description'" +
-                    "from projects                                    " +
-                    "left join users on users.uid = projects.owner_id;";
+                    "select                                            " +
+                    "    users.name as 'project owner',                " +
+                    "	users.profile_image_url,                       " +
+                    "    users.description as 'business description',  " +
+                    "	projects.project_name,                         " +
+                    "    projects.description as 'project description' " +
+                    "from projects                                     " +
+                    "left join users on users.uid = projects.owner_id; ";
 
                     List<List<string>> projectListFromDB = dataManager.Select(getProjects);
                     List<Projects> projectList = new List<Projects>();
