@@ -57,19 +57,22 @@
 
     </div>
 
-    <p>Click "Try it" to display the value of each element in the form.</p>
-
-    <a class="btn btn-primary" onclick="myFunction()" href="profile.html">Save</a>
+    <button class="btn btn-primary" onclick="myFunction()">Save</button>
     <a class="btn btn-primary" href="profile.html">Cancel</a>
     <script>
         function myFunction() {
-            var x = document.getElementById("frm1");
-            var text = "";
-            var i;
-            for (i = 0; i < x.length ;i++) {
-                text += x.elements[i].value + "<br>";
-            }
-            document.getElementById("demo").innerHTML = text;
+            let username = document.getElementById("edit-username").value;
+            let description = document.getElementById("edit-description").value;
+            console.log(username)
+            console.log(description)
+            let requestOptions = {
+                method: 'POST',
+                redirect: 'follow'
+            };
+            let query = `/api/UserProfile?jwt=${encodeURIComponent(jwt)}&username=${username}&description=${description}`;
+            dataManager.send_request(requestOptions, query, function () {
+                window.location = "profile.html";
+            })
         }
     </script>
     <hr>
@@ -104,8 +107,8 @@
         let profile = response[jwt]
         console.log(profile)
         let htmlTemplate = `<form>
-                            Name: <input type="text" name="fname" value="${profile['name']}" class="form-row"><br>
-                            Description/Skills: <input type="text" name="lname" value="${profile['description']}" class="form-row"><br><br>
+                            Name: <input type="text" name="fname" value="${profile['name']}" class="form-row" id="edit-username"><br>
+                            Description/Skills: <input type="text" name="lname" value="${profile['description']}" class="form-row" id="edit-description"><br><br>
                             </form>`
         $("#edit-profile-form").html(htmlTemplate)
     });
