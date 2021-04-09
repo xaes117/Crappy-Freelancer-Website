@@ -86,15 +86,11 @@ namespace Platform.Controllers
             this.dataManager.Insert(query);
         }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
+        // for later
         // DELETE api/<controller>/5
-        public void Delete(int id)
+/*        public void Delete(int id)
         {
-        }
+        }*/
 
         public UserProfileController()
         {

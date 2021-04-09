@@ -19,7 +19,7 @@ namespace Platform.Tests.Controllers
                 {
                     List<string> mockStudentProfile = new List<string>
                     {
-                        "1", "name", "deescription", "student", "example@email.com", "imageUrl"
+                        "name", "deescription", "student", "imageUrl"
                     };
 
                     return new List<List<string>>
@@ -32,7 +32,7 @@ namespace Platform.Tests.Controllers
                 {
                     List<string> mockBusinessProfile = new List<string>
                     {
-                        "1", "name", "deescription", "business", "example@email.com", "imageUrl"
+                        "name", "deescription", "business", "imageUrl"
                     };
 
                     return new List<List<string>>
@@ -42,6 +42,11 @@ namespace Platform.Tests.Controllers
                 }
 
                 return null;
+            }
+
+            public override void Insert(string query)
+            {
+                
             }
         }
 
@@ -71,6 +76,29 @@ namespace Platform.Tests.Controllers
 
             // Assert
             Assert.AreEqual("business", userProfile["mockBusinessJwt"]["accountType"]);
+        }
+
+        [TestMethod]
+        public void PostupdateTest()
+        {
+            // Arrange
+            MockDataManager mockDataManager = new MockDataManager();
+            UserProfileController userProfileController = new UserProfileController(mockDataManager);
+
+            Exception exception = null;
+
+            // Act
+            try
+            {
+                userProfileController.Post("mockJwt", "mockUsername", "mockDescription");
+            } catch (Exception e)
+            {
+                exception = e;
+            } finally
+            {
+                // Assert
+                Assert.IsNull(exception);
+            }
         }
     }
 }
