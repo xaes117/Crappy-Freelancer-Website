@@ -1,6 +1,6 @@
 class DataManager {
     constructor() {
-        this.baseUrl = "https://8445b6e1ad7e.ngrok.io";
+        this.baseUrl = "https://458a9b6a0e9e.ngrok.io";
     }
 
     send_request(requestOptions, query, callback) {
@@ -12,10 +12,32 @@ class DataManager {
             .catch(error => console.log('error', error));
     }
 
+    create_project(jwt, projectTitle, projectDescription) {
+        let requestOptions = {
+            method: 'POST',
+            redirect: 'follow'
+        };
+
+        let query = `/api/Project?jwt=${encodeURIComponent(jwt)}&projectTitle=${projectTitle}&projectDescription=${projectDescription}`;
+
+        this.send_request(requestOptions, query, function () {
+            window.location = "profile.html";
+        })
+    }
+
 }
 
-// Store
-sessionStorage.setItem("jwt", "cCWG1VPbJru4vKBsrdAnOwoAuEtKSCBUMh07VT4jPUw=");
+function loadPage(pageType, id) {
+    if (pageType === 'projectPage') {
+        sessionStorage.setItem('projectViewId', id)
+        window.location.href = `viewProject.html`;
+    }
+}
 
-// Retrieve
-// document.getElementById("result").innerHTML = sessionStorage.getItem("lastname");
+function round(value, precision) {
+    let multiplier = Math.pow(10, precision || 0);
+    return Math.round(value * multiplier) / multiplier;
+}
+
+// Storehttps://2c455c97dcd8.ngrok.io/api/Project/1
+sessionStorage.setItem("jwt", "zyRkwsTd+E6zZDMnrGEJYGnJh44yMdjXdJPl+fayy7E=");

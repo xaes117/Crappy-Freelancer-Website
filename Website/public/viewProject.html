@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="js/DataManager.js"></script>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Business Frontpage - Start Bootstrap Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/business-frontpage.css" rel="stylesheet">
+
+</head>
+
+<body>
+<!-- Page Content -->
+<div class="container">
+    <div class="row" id="project-information">
+    </div>
+    <script>
+
+        let dataManager = new DataManager();
+
+        let requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
+
+        query = "/api/Project/" + sessionStorage.getItem('projectViewId');
+        dataManager.send_request(requestOptions, query, function (response) {
+            response = JSON.parse(response)
+            let rating = round(parseFloat(response['businessRating']), 1)
+            console.log(response)
+            let htmlTemplate = `
+                        <div class="col-md-8 mb-5">
+                            <h2>${response['projectName']}</h2>
+                            <hr>
+                            <div id="home-page-userinfo">
+                                <p>Project description and skills required: ${response['projectDescription']}</p>
+                            </div>
+                            <a href="profile.html" class="btn btn-primary">Apply Now</a>
+                        </div>
+                        <div class="col-md-4 mb-5">
+                            <h2>Project Owner: ${response['businessName']}</h2>
+                            <h2>Rating: ${rating}</h2>
+                            <hr>
+                            <div><p>About myself: ${response['businessDescription']}</p></div>
+                        </div>`
+
+            $("#project-information").html(htmlTemplate);
+        })
+    </script>
+    <hr>
+</div>
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    </div>
+    <!-- /.container -->
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
