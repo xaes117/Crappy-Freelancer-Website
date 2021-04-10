@@ -12,6 +12,39 @@ namespace Platform.Controllers
     {
         private DataManager dataManager;
 
+        public string Get(int id)
+        {
+            string query =
+            "select                                                                                  " +
+            "projects.projectid,                                                                     " +
+            "project_name,                                                                           " +
+            "projects.description as 'projectDescription',                                           " +
+            "u.name as 'businessName',                                                               " +
+            "u.description as 'businessDescription',                                                 " +
+            "avg(rating) from(select * from projects where projects.projectid = " + id + ") projects " +
+            "left join users u on u.uid = projects.owner_id                                          " +
+            "left join reviews r on r.uid_receiver = u.uid                                           " +
+            "group by u.uid, project_name;                                                           ";
+
+            try
+            {
+                List<string> project = this.dataManager.Select(query)[0];
+                return 
+                    "{" +
+                    " 'id' : " + project[0] + "," +
+                    " 'projectName' : '" + project[1] + "', " + 
+                    " 'projectDescription' : '" + project[2] + "', " +
+                    " 'businessName' : '" + project[3] + "', " +
+                    " 'businessDescription' : '" + project[4] + "', " +
+                    " 'businessRating' : " + project[5] + " " +
+                    "}";
+            } catch (Exception e)
+            {
+                return e.ToString();
+            }
+
+        }                                                                                          
+
         // POST api/<controller>
         // Post a project
         public string Post(string jwt, string projectTitle, string projectDescription)

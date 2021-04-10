@@ -30,5 +30,3 @@ class DataManager {
 // Store
 sessionStorage.setItem("jwt", "zyRkwsTd+E6zZDMnrGEJYGnJh44yMdjXdJPl+fayy7E=");
 
-// Retrieve
-// document.getElementById("result").innerHTML = sessionStorage.getItem("lastname");
