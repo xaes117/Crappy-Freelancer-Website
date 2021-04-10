@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<script src="js/DataManager.js"></script>
 
 <head>
 
@@ -21,7 +22,41 @@
 <body>
 <!-- Page Content -->
 <div class="container">
+    <div class="row" id="project-information">
+    </div>
+    <script>
 
+        let dataManager = new DataManager();
+
+        let requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
+
+        query = "/api/Project/" + sessionStorage.getItem('projectViewId');
+        dataManager.send_request(requestOptions, query, function (response) {
+            response = JSON.parse(response)
+            let rating = round(parseFloat(response['businessRating']), 1)
+            console.log(response)
+            let htmlTemplate = `
+                        <div class="col-md-8 mb-5">
+                            <h2>${response['projectName']}</h2>
+                            <hr>
+                            <div id="home-page-userinfo">
+                                <p>Project description and skills required: ${response['projectDescription']}</p>
+                            </div>
+                            <a href="profile.html" class="btn btn-primary">Apply Now</a>
+                        </div>
+                        <div class="col-md-4 mb-5">
+                            <h2>Project Owner: ${response['businessName']}</h2>
+                            <h2>Rating: ${rating}</h2>
+                            <hr>
+                            <div><p>About myself: ${response['businessDescription']}</p></div>
+                        </div>`
+
+            $("#project-information").html(htmlTemplate);
+        })
+    </script>
     <hr>
 </div>
 <!-- Footer -->
@@ -33,7 +68,6 @@
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="js/DataManager.js"></script>
 
 <!-- Bootstrap core JavaScript -->
 <script src="vendor/jquery/jquery.min.js"></script>

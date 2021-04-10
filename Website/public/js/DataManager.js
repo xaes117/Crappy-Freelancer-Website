@@ -1,6 +1,6 @@
 class DataManager {
     constructor() {
-        this.baseUrl = "https://2c455c97dcd8.ngrok.io";
+        this.baseUrl = "https://c5a042fe065e.ngrok.io";
     }
 
     send_request(requestOptions, query, callback) {
@@ -27,16 +27,17 @@ class DataManager {
 
 }
 
+function loadPage(pageType, id) {
+    if (pageType === 'projectPage') {
+        sessionStorage.setItem('projectViewId', id)
+        window.location.href = `viewProject.html`;
+    }
+}
+
+function round(value, precision) {
+    let multiplier = Math.pow(10, precision || 0);
+    return Math.round(value * multiplier) / multiplier;
+}
+
 // Storehttps://2c455c97dcd8.ngrok.io/api/Project/1
 sessionStorage.setItem("jwt", "zyRkwsTd+E6zZDMnrGEJYGnJh44yMdjXdJPl+fayy7E=");
-// let requestOptions = {
-//     method: 'GET',
-//     redirect: 'follow'
-// };
-// dataManager = new DataManager()
-// dataManager.send_request(requestOptions, "/api/Project/1", function(response) {
-//     let jsonObj = JSON.parse(response)
-//     console.log(jsonObj)
-//     console.log(jsonObj['projectDescription'])
-//
-// })

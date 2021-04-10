@@ -23,7 +23,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">Start Bootstrap</a>
+        <a class="navbar-brand" href="#">My Freelance Website</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -94,7 +94,6 @@
 
                         dataManager.send_request(requestOptions, query, function (response) {
                             response = JSON.parse(response);
-                            console.log(response);
 
                             let keys = Object.keys(response)
                             let responseArray = response[keys[0]];
@@ -112,7 +111,7 @@
                                                                  <p class="card-text">${responseArray[i]['projectDescription']}</p>
                                                              </div>
                                                              <div class="card-footer">
-                                                                 <a href="#" class="btn btn-primary">Find Out More!</a>
+                                                                 <a onclick="loadPage('projectPage', ${responseArray[i]['projectId']})" class="btn btn-primary">Find Out More!</a>
                                                              </div>
                                                          </div>
                                                      </div>`;
@@ -130,35 +129,8 @@
                                                          </div>
                                                      </div>`;
                                 }
-
                             }
-
                             $("#home-page-usercard").html(htmlTemplate);
-
-
-                            // "reviewList": null,
-                            // "messageList": null,
-                            // "uid": 8,
-                            // "name": "Tescos",
-                            // "description": "Tesco plc, trading as Tesco, is a British multinational groceries and general merchandise retailer headquartered in Welwyn Garden City",
-                            // "accountType": null,
-                            // "profileImageUrl": "https://res.cloudinary.com/soft7003/image/upload/v1616025946/samples/sheep.jpg"
-
-                            // "reviewList": null,
-                            //     "messageList": null,
-                            //     "uid": 1,
-                            //     "name": "test",
-                            //     "description": "Python developer",
-                            //     "accountType": null,
-                            //     "profileImageUrl": "https://res.cloudinary.com/soft7003/image/upload/v1616025927/sample.jpg"
-
-                            // "projectId": 4,
-                            // "ownerId": 8,
-                            // "businessName": null,
-                            // "profileImageUrl": null,
-                            // "businessDeescription": null,
-                            // "projectTitle": "Java Developer needed",
-                            // "projectDescription": "Need Java developer to build microservices"
                         })
 
                     }
@@ -246,9 +218,6 @@
                                          <p class="card-text">${businessDescription}</p>
                                          <h4 class="card-title">${projectTitle}</h4>
                                          <p class="card-text">${projectDescription}</p>
-                                     </div>
-                                     <div class="card-footer">
-                                         <a href="#" class="btn btn-primary">Find Out More!</a>
                                      </div>
                                  </div>
                              </div>`;

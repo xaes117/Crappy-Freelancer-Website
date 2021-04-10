@@ -54,7 +54,8 @@ namespace Platform.Controllers
             "from projects p                                  " +
             "where (p.status not like 'complete'              " +
             "or p.status is null)                             " +
-            "and p.project_name like '%" + searchTerm + "%'; ;";
+            "and (p.project_name like '%" + searchTerm + "%'  " +
+            "or p.description like '%" + searchTerm + "%');   ";
 
             List<List<string>> businessListFromDB = this.dataManager.Select(getProjectQuery);
             List<Projects> projectList = new List<Projects>();
