@@ -12,7 +12,7 @@ namespace Platform.Controllers
     {
         private DataManager dataManager;
 
-        public string Get(int id)
+        public Dictionary<string, string> Get(int id)
         {
             string query =
             "select                                                                                  " +
@@ -35,18 +35,19 @@ namespace Platform.Controllers
                     throw new Exception("Something went wrong");
                 }
 
-                return 
-                    "{" +
-                    " 'id' : " + project[0] + "," +
-                    " 'projectName' : '" + project[1] + "', " + 
-                    " 'projectDescription' : '" + project[2] + "', " +
-                    " 'businessName' : '" + project[3] + "', " +
-                    " 'businessDescription' : '" + project[4] + "', " +
-                    " 'businessRating' : " + project[5] + " " +
-                    "}";
+                return new Dictionary<string, string>
+                {
+                    { "id", project[0] },
+                    { "projectName", project[1] },
+                    { "projectDescription", project[2] },
+                    { "businessName", project[3] },
+                    { "businessDescription", project[4] },
+                    { "businessRating", project[5] }
+
+                };
             } catch (Exception e)
             {
-                return e.ToString();
+                throw e;
             }
 
         }                                                                                          

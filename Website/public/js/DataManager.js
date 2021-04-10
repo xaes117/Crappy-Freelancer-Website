@@ -27,6 +27,16 @@ class DataManager {
 
 }
 
-// Store
+// Storehttps://2c455c97dcd8.ngrok.io/api/Project/1
 sessionStorage.setItem("jwt", "zyRkwsTd+E6zZDMnrGEJYGnJh44yMdjXdJPl+fayy7E=");
-
+// let requestOptions = {
+//     method: 'GET',
+//     redirect: 'follow'
+// };
+// dataManager = new DataManager()
+// dataManager.send_request(requestOptions, "/api/Project/1", function(response) {
+//     let jsonObj = JSON.parse(response)
+//     console.log(jsonObj)
+//     console.log(jsonObj['projectDescription'])
+//
+// })

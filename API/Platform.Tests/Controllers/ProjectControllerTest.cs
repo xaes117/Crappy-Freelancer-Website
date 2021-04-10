@@ -79,20 +79,24 @@ namespace Platform.Tests.Controllers
             MockDataManager mockDataManager = new MockDataManager();
             ProjectController projectController = new ProjectController(mockDataManager);
 
-            string jsonString = projectController.Get(1);
+            Dictionary<string, string> jsonString = projectController.Get(1);
 
-            Assert.IsTrue(jsonString.Contains("projectName"));
-            Assert.IsTrue(jsonString.Contains("projectDescription"));
-            Assert.IsTrue(jsonString.Contains("businessName"));
-            Assert.IsTrue(jsonString.Contains("businessDescription"));
-            Assert.IsTrue(jsonString.Contains("businessRating"));
+            Assert.IsTrue(jsonString["projectName"].Contains("mockProjectName"));
+            Assert.IsTrue(jsonString["businessName"].Contains("mockBusinessName"));
+
+            bool errorDetected = false;
 
             try
             {
-                string exceptionString = projectController.Get(2);
-                Assert.IsTrue(exceptionString.Contains("Something went wrong"));
-            } finally
+                Dictionary<string, string> exceptionString = projectController.Get(2);
+            }
+            catch (Exception)
             {
+                errorDetected = true;
+            }
+            finally
+            {
+                Assert.IsTrue(errorDetected);
             }
         }
 
