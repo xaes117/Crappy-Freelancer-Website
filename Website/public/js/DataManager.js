@@ -1,6 +1,11 @@
 class DataManager {
     constructor() {
-        this.baseUrl = "https://458a9b6a0e9e.ngrok.io";
+        this.baseUrl = "https://584c94939344.ngrok.io";
+
+        this.postTemplate = {
+            method: 'POST',
+            redirect: 'follow'
+        };
     }
 
     send_request(requestOptions, query, callback) {
@@ -13,18 +18,32 @@ class DataManager {
     }
 
     create_project(jwt, projectTitle, projectDescription) {
-        let requestOptions = {
-            method: 'POST',
-            redirect: 'follow'
-        };
-
+        let requestOptions = this.postTemplate
         let query = `/api/Project?jwt=${encodeURIComponent(jwt)}&projectTitle=${projectTitle}&projectDescription=${projectDescription}`;
-
         this.send_request(requestOptions, query, function () {
             window.location = "profile.html";
         })
     }
 
+    create_user(email, username, password, isStudent) {
+        let query = `/api/Login?email=${email}&username=${username}&passHash=${password}&isStudent=${isStudent}&isRegistration=true`
+        this.send_request(this.postTemplate, query, function (response) {
+            if (!response.includes("exception")) {
+                sessionStorage.setItem('jwt', response.replace(/['"]+/g, ''))
+                window.location = "home.html"
+            }
+        })
+    }
+
+    login_user(email, username, password) {
+        let query = `/api/Login?email=${email}&username=${username}&passHash=${password}&isStudent=false&isRegistration=false`
+        this.send_request(this.postTemplate, query, function (response) {
+            if (!response.includes("exception")) {
+                sessionStorage.setItem('jwt', response.replace(/['"]+/g, ''))
+                window.location = "home.html"
+            }
+        })
+    }
 }
 
 function loadPage(pageType, id) {
@@ -40,4 +59,4 @@ function round(value, precision) {
 }
 
 // Storehttps://2c455c97dcd8.ngrok.io/api/Project/1
-sessionStorage.setItem("jwt", "zyRkwsTd+E6zZDMnrGEJYGnJh44yMdjXdJPl+fayy7E=");
+// sessionStorage.setItem("jwt", "zyRkwsTd+E6zZDMnrGEJYGnJh44yMdjXdJPl+fayy7E=");
