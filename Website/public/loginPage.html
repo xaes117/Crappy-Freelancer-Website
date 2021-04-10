@@ -1,0 +1,50 @@
+<html>
+
+<head>
+  <link href="LoginPage.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <title>OBU Freelance Login</title>
+  <script src="loginScript.js"></script>
+</head>
+<body>
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img
+        src="https://www.brookes.ac.uk/uploadedImages/Main_Site/Fixed_pages/About_Brookes/NewsImport/Brookes%20logo(2).jpg"
+        id="icon" alt="User Icon" />
+    </div>
+
+ 
+    <!-- Register Form -->
+    <form id="loginForm">
+      <div class="LoginText">Login</div>
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Email">
+      <input type="password" id="password" class="fadeIn third" name="login" placeholder="Password">
+      <div class="LoginText">Register</div>
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Email">
+      <input type="password" id="password" class="fadeIn third" name="login" placeholder="Password">
+      <input type="password" id="passwordCheck" class="fadeIn third" name="login" placeholder="Retype Password">
+      <div><select id="mySelect">
+          <option>Student</option>
+          <option>Business</option>
+        </select>
+      </div>
+      <input type="button" class="fadeIn fourth" value="Log In" onclick="login()">
+      <input type="button" onclick="register()" class="fadeIn fourth" value="Register">
+    </form>
+    <div id="error"></div>
+    <!-- Remind Password -->
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Forgot Password?</a>
+    </div>
+  </div>
+</div>
+</body>
+<script type="text/javascript">function add_chatinline(){var hccid=51290881;var nt=document.createElement("script");nt.async=true;nt.src="https://www.mylivechat.com/chatinline.aspx?hccid="+hccid;var ct=document.getElementsByTagName("script")[0];ct.parentNode.insertBefore(nt,ct);}
+  add_chatinline();</script>
+</html>
