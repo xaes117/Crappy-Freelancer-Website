@@ -39,7 +39,7 @@
                     <a class="nav-link" href="profile.html">Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" onclick="logout()" href="index.html">Logout</a>
+                    <a class="nav-link" onclick="logout()" href="loginPage.html">Logout</a>
                     <script>
                         function logout() {
                             sessionStorage.clear();
@@ -200,6 +200,8 @@
     jwt = encodeURIComponent(sessionStorage.getItem("jwt"));
 
     query = "/api/LandingPage?jwt=" + jwt;
+
+    console.log(query)
 
     let dataManager = new DataManager()
     dataManager.send_request(requestOptions, query, function (response) {
