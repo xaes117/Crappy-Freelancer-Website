@@ -1,6 +1,6 @@
 class DataManager {
     constructor() {
-        this.baseUrl = "https://c5a042fe065e.ngrok.io";
+        this.baseUrl = "https://458a9b6a0e9e.ngrok.io";
     }
 
     send_request(requestOptions, query, callback) {

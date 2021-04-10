@@ -39,7 +39,12 @@
                     <a class="nav-link" href="profile.html">Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
+                    <a class="nav-link" onclick="logout()" href="index.html">Logout</a>
+                    <script>
+                        function logout() {
+                            sessionStorage.clear();
+                        }
+                     </script>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contact</a>
