@@ -21,9 +21,11 @@ namespace Platform.Controllers
         {
             // return last N messages
 
-            string query = "select " +
+            string query = "select                                                                       " +
                            "uid_sender,                                                                  " +
                            "uid_receiver,                                                                " +
+                           "(select users.name from users where uid = uid_sender) as sender_name,        " +
+                           "(select users.name from users where uid = uid_receiver) as receiver_name,    " +                                       
                            "messages.datetime,                                                           " +
                            "messages.message                                                             " +
                            "from messages                                                                " +
@@ -41,10 +43,12 @@ namespace Platform.Controllers
             {
                 int sender_id = Int32.Parse(m[0]);
                 int receiver_id = Int32.Parse(m[1]);
-                string dateTime = m[2];
-                string message = m[3];
+                string sender_name = m[2];
+                string receiver_name = m[3];
+                string dateTime = m[4];
+                string message = m[5];
 
-                messageList.Add(new Message(sender_id, receiver_id, message, dateTime));
+                messageList.Add(new Message(sender_id, receiver_id, sender_name, receiver_name, message, dateTime));
             }
 
             return JObject.Parse("{ \"messages\": " + JsonConvert.SerializeObject(messageList) + "}"); 
