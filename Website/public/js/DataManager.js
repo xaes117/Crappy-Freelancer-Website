@@ -1,13 +1,12 @@
 class DataManager {
     constructor() {
-        this.baseUrl = "https://1b07acfef63b.ngrok.io";
+        this.baseUrl = "https://8445b6e1ad7e.ngrok.io";
     }
 
     send_request(requestOptions, query, callback) {
         fetch(this.baseUrl + query, requestOptions)
             .then(response => response.text())
             .then(function (response) {
-                console.log(response)
                 callback(response)
             })
             .catch(error => console.log('error', error));

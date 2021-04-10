@@ -54,10 +54,115 @@
     <div class="container h-100">
         <div class="row h-100 align-items-center">
             <div class="col-lg-12">
-                <h1 class="display-4 text-white mt-5 mb-2">Business Name or Tagline</h1>
-                <p class="lead mb-5 text-white-50">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non
-                    possimus ab labore provident mollitia. Id assumenda voluptate earum corporis facere quibusdam
-                    quisquam iste ipsa cumque unde nisi, totam quas ipsam.</p>
+                <h1 class="display-4 text-white mt-5 mb-2">Search for Something</h1>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">Category</label>
+                    </div>
+                    <select class="custom-select" id="inputGroupSelect01">
+                        <option selected>Choose...</option>
+                        <option value="0">Projects</option>
+                        <option value="1">Students</option>
+                        <option value="2">Businesses</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Search Query</span>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Default"
+                           aria-describedby="inputGroup-sizing-default" id="search-query">
+                </div>
+                <button type="button" class="btn btn-light" onclick="search()">Search!</button>
+                <script>
+                    function search() {
+
+                        // projects = 0
+                        // students = 1
+                        // businesses = 2
+
+                        let searchCategory = document.getElementById("inputGroupSelect01").value;
+                        let searchQuery = document.getElementById("search-query").value;
+
+                        let requestOptions = {
+                            method: 'GET',
+                            redirect: 'follow'
+                        };
+
+                        let query = `/api/Search?searchCategory=${searchCategory}&searchQuery=${searchQuery}`;
+                        console.log(query)
+
+                        dataManager.send_request(requestOptions, query, function (response) {
+                            response = JSON.parse(response);
+                            console.log(response);
+
+                            let keys = Object.keys(response)
+                            let responseArray = response[keys[0]];
+                            console.log(responseArray)
+                            let htmlTemplate = "";
+
+                            for (let i = 0; i < responseArray.length; i++) {
+
+                                if (keys[0] === 'projects') {
+                                    htmlTemplate += `<div class="col-md-4 mb-5">
+                                                         <div class="card h-100">
+                                                             <img class="card-img-top" src="" alt="">
+                                                             <div class="card-body">
+                                                                 <h4 class="card-title">${responseArray[i]['projectTitle']}</h4>
+                                                                 <p class="card-text">${responseArray[i]['projectDescription']}</p>
+                                                             </div>
+                                                             <div class="card-footer">
+                                                                 <a href="#" class="btn btn-primary">Find Out More!</a>
+                                                             </div>
+                                                         </div>
+                                                     </div>`;
+                                } else {
+                                    htmlTemplate += `<div class="col-md-4 mb-5">
+                                                         <div class="card h-100">
+                                                             <img class="card-img-top" src="" alt="">
+                                                             <div class="card-body">
+                                                                 <h4 class="card-title">${responseArray[i]['name']}</h4>
+                                                                 <p class="card-text">${responseArray[i]['description']}</p>
+                                                             </div>
+                                                             <div class="card-footer">
+                                                                 <a href="#" class="btn btn-primary">Find Out More!</a>
+                                                             </div>
+                                                         </div>
+                                                     </div>`;
+                                }
+
+                            }
+
+                            $("#home-page-usercard").html(htmlTemplate);
+
+
+                            // "reviewList": null,
+                            // "messageList": null,
+                            // "uid": 8,
+                            // "name": "Tescos",
+                            // "description": "Tesco plc, trading as Tesco, is a British multinational groceries and general merchandise retailer headquartered in Welwyn Garden City",
+                            // "accountType": null,
+                            // "profileImageUrl": "https://res.cloudinary.com/soft7003/image/upload/v1616025946/samples/sheep.jpg"
+
+                            // "reviewList": null,
+                            //     "messageList": null,
+                            //     "uid": 1,
+                            //     "name": "test",
+                            //     "description": "Python developer",
+                            //     "accountType": null,
+                            //     "profileImageUrl": "https://res.cloudinary.com/soft7003/image/upload/v1616025927/sample.jpg"
+
+                            // "projectId": 4,
+                            // "ownerId": 8,
+                            // "businessName": null,
+                            // "profileImageUrl": null,
+                            // "businessDeescription": null,
+                            // "projectTitle": "Java Developer needed",
+                            // "projectDescription": "Need Java developer to build microservices"
+                        })
+
+                    }
+                </script>
             </div>
         </div>
     </div>
@@ -80,12 +185,12 @@
             <hr>
             <div id="home-page-profile-image"></div>
             <!--            <address>-->
-<!--                <abbr title="Phone">P:</abbr>-->
-<!--                (123) 456-7890-->
-<!--                <br>-->
-<!--                <abbr title="Email">E:</abbr>-->
-<!--                <a href="mailto:#">name@example.com</a>-->
-<!--            </address>-->
+            <!--                <abbr title="Phone">P:</abbr>-->
+            <!--                (123) 456-7890-->
+            <!--                <br>-->
+            <!--                <abbr title="Email">E:</abbr>-->
+            <!--                <a href="mailto:#">name@example.com</a>-->
+            <!--            </address>-->
         </div>
     </div>
     <!-- /.row -->
