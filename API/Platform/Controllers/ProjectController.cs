@@ -29,6 +29,12 @@ namespace Platform.Controllers
             try
             {
                 List<string> project = this.dataManager.Select(query)[0];
+
+                if (Int32.Parse(project[0]) != id)
+                {
+                    throw new Exception("Something went wrong");
+                }
+
                 return 
                     "{" +
                     " 'id' : " + project[0] + "," +

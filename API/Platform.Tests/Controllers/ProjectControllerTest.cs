@@ -51,12 +51,48 @@ namespace Platform.Tests.Controllers
                     };
                 }
 
+                if (query.ToLower().Contains("select") && query.ToLower().Contains("from projects"))
+                {
+                    return new List<List<string>>
+                    {
+                        new List<string>
+                        {
+                            "1", "mockProjectName", "mockProjectDescription",
+                            "mockBusinessName", "mockBusinessDescription", "4.0"
+                        }
+                    };
+                }
+
                 return null;
             }
 
             public override void Insert(string query)
             {
                 // insert nothing
+            }
+        }
+
+        [TestMethod]
+        public void GetProjectTest()
+        {
+            // Arrange
+            MockDataManager mockDataManager = new MockDataManager();
+            ProjectController projectController = new ProjectController(mockDataManager);
+
+            string jsonString = projectController.Get(1);
+
+            Assert.IsTrue(jsonString.Contains("projectName"));
+            Assert.IsTrue(jsonString.Contains("projectDescription"));
+            Assert.IsTrue(jsonString.Contains("businessName"));
+            Assert.IsTrue(jsonString.Contains("businessDescription"));
+            Assert.IsTrue(jsonString.Contains("businessRating"));
+
+            try
+            {
+                string exceptionString = projectController.Get(2);
+                Assert.IsTrue(exceptionString.Contains("Something went wrong"));
+            } finally
+            {
             }
         }
 
