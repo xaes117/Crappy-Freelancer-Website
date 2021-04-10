@@ -262,6 +262,11 @@
                         <p>Description/Skills: ${profile[1]}</p>`
         $("#home-page-userinfo").html(htmlTemplate);
 
+        if (profile[2] === 'business') {
+            htmlTemplate = `<a href="createProjectPage.html" type="button" class="btn btn-warning">Create Project</a>`
+            $("#home-page-userinfo").append(htmlTemplate)
+        }
+
         let profileImageUrl = profile[3];
         htmlTemplate = `<img class="card-img-top" src="${profileImageUrl}" alt="" width="100" height=auto>`
         $("#home-page-profile-image").html(htmlTemplate);
