@@ -60,7 +60,7 @@ namespace Platform.Controllers
             string query = "INSERT INTO `soft7003`.`messages` (`uid_sender`, `uid_receiver`, `datetime`, `message`) " +
                            "VALUES(                                                                                 " +
                            "(                                                                                       " +
-                           "    select uid from web_tokens wt where wt.jwt = '" + jwt + "'             /             " +
+                           "    select uid from web_tokens wt where wt.jwt = '" + jwt + "'                          " +
                            "), '" + receiver + "', now(), '" + message + "'); ";
 
             this.dataManager.Insert(query);

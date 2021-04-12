@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Platform.Controllers
 {
@@ -19,6 +20,7 @@ namespace Platform.Controllers
             "projects.projectid,                                                                     " +
             "project_name,                                                                           " +
             "projects.description as 'projectDescription',                                           " +
+            "u.uid as 'businessId',                                                                  " +
             "u.name as 'businessName',                                                               " +
             "u.description as 'businessDescription',                                                 " +
             "avg(rating) from(select * from projects where projects.projectid = " + id + ") projects " +
@@ -37,12 +39,13 @@ namespace Platform.Controllers
 
                 return new Dictionary<string, string>
                 {
-                    { "id", project[0] },
+                    { "project_id", project[0] },
                     { "projectName", project[1] },
                     { "projectDescription", project[2] },
-                    { "businessName", project[3] },
-                    { "businessDescription", project[4] },
-                    { "businessRating", project[5] }
+                    { "business_id", project[3]},
+                    { "businessName", project[4] },
+                    { "businessDescription", project[5] },
+                    { "businessRating", project[6] }
 
                 };
             } catch (Exception e)
@@ -50,10 +53,12 @@ namespace Platform.Controllers
                 throw e;
             }
 
-        }                                                                                          
+        }
 
         // POST api/<controller>
         // Post a project
+        [HttpPost]
+        [Route("api/Project")]
         public string Post(string jwt, string projectTitle, string projectDescription)
         {
             string getUidQuery =
@@ -117,7 +122,9 @@ namespace Platform.Controllers
 
         // PUT api/<controller>/5
         // Submit a proposal
-        public string Put(int projectId, string jwt, string coverLetter)
+        [HttpPost]
+        [Route("api/SubmitProposal")]
+        public string PostProposal(int projectId, string jwt, string coverLetter)
         {
             string getUidQuery =
             "select                                      " +

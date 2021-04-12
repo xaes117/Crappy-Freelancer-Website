@@ -508,3 +508,6 @@ C:\Users\yegor\Documents\Work\SOFT7003-Project\API\Platform\obj\Debug\Platform.c
 C:\Users\yegor\Documents\Work\SOFT7003-Project\API\Platform\obj\Debug\Platform.csproj.CopyComplete
 C:\Users\yegor\Documents\Work\SOFT7003-Project\API\Platform\obj\Debug\Platform.dll
 C:\Users\yegor\Documents\Work\SOFT7003-Project\API\Platform\obj\Debug\Platform.pdb
+C:\Users\yegor\Documents\Work\SOFT7003-Project\API\Platform\bin\System.Web.Cors.dll
+C:\Users\yegor\Documents\Work\SOFT7003-Project\API\Platform\bin\System.Web.Http.Cors.dll
+C:\Users\yegor\Documents\Work\SOFT7003-Project\API\Platform\bin\System.Web.Http.Cors.xml

@@ -36,6 +36,7 @@
         query = "/api/Project/" + sessionStorage.getItem('projectViewId');
         dataManager.send_request(requestOptions, query, function (response) {
             response = JSON.parse(response)
+            sessionStorage.setItem('businessViewId', response['business_id'])
             let rating = round(parseFloat(response['businessRating']), 1)
             console.log(response)
             let htmlTemplate = `
@@ -45,14 +46,14 @@
                             <div id="home-page-userinfo">
                                 <p>Project description and skills required: ${response['projectDescription']}</p>
                             </div>
-                            <a href="profile.html" class="btn btn-primary">Apply Now</a>
+                            <a href="application.html" class="btn btn-primary">Apply Now</a>
                         </div>
                         <div class="col-md-4 mb-5">
                             <h2>Project Owner: ${response['businessName']}</h2>
                             <h2>Rating: ${rating}</h2>
                             <hr>
                             <div><p>About myself: ${response['businessDescription']}</p></div>
-                        </div>`
+                        </div>`;
 
             $("#project-information").html(htmlTemplate);
         })

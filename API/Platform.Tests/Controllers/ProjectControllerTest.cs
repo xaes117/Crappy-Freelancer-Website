@@ -57,7 +57,7 @@ namespace Platform.Tests.Controllers
                     {
                         new List<string>
                         {
-                            "1", "mockProjectName", "mockProjectDescription",
+                            "1", "mockProjectName", "mockProjectDescription", "1",
                             "mockBusinessName", "mockBusinessDescription", "4.0"
                         }
                     };
@@ -149,7 +149,7 @@ namespace Platform.Tests.Controllers
             string mockCoverLetter = "mockCoverLetter";
 
             // Act
-            string mockObject = projectController.Put(mockId, mockJwt, mockCoverLetter);
+            string mockObject = projectController.PostProposal(mockId, mockJwt, mockCoverLetter);
 
             // Assert
             Assert.IsTrue(mockObject.Contains("'message' : 'success'"));

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="js/DataManager.js"></script>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Business Frontpage - Start Bootstrap Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/business-frontpage.css" rel="stylesheet">
+
+</head>
+
+<body>
+<!-- Page Content -->
+<div class="container">
+    <form>
+        <div class="form-group">
+            <label>Cover Letter</label>
+            <textarea class="form-control" id="application-cover-letter" rows="4"></textarea>
+        </div>
+        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="submit_application()">Submit application</button>
+    </form>
+
+    <script>
+        // (string jwt, int receiver, string message) - send message
+        // (int projectId, string jwt, string coverLetter) - submit proposal
+        let businessId = sessionStorage.getItem('businessViewId');
+        let projectId = sessionStorage.getItem('projectViewId');
+        let jwt = encodeURIComponent(sessionStorage.getItem('jwt'));
+
+        function submit_application() {
+
+            let coverLetter = document.getElementById('application-cover-letter').value;
+            let messageQuery = `/api/Message?jwt=${jwt}&receiver=${businessId}&message=${coverLetter}`
+            let dataManager = new DataManager();
+            dataManager.send_request(dataManager.postTemplate, messageQuery, function(response) {
+                console.log(response);
+            });
+
+            let putQuery = `/api/SubmitProposal?projectId=${projectId}&jwt=${jwt}&coverLetter=${coverLetter}`
+            console.log(putQuery)
+            dataManager.send_request(dataManager.postTemplate, putQuery, function (response) {
+                console.log(response)
+            })
+
+            window.location = "messages.html"
+        }
+
+    </script>
+    <hr>
+</div>
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    </div>
+    <!-- /.container -->
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
