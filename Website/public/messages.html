@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<!-- Bootstrap core JavaScript -->
+    <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <title>Business Frontpage - Start Bootstrap Template</title>
@@ -23,69 +23,84 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">My Freelance Website</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="home.html">Home
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="profile.html">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" onclick="logout()" href="loginPage.html">Logout</a>
-                        <script>
-                            function logout() {
-                                sessionStorage.clear();
-                            }
-                        </script>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Messages</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
+        <a class="navbar-brand" href="#">My Freelance Website</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="profile.html">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="logout()" href="loginPage.html">Logout</a>
+                    <script>
+                        function logout() {
+                            sessionStorage.clear();
+                        }
+                    </script>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Messages</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
     <form>
         <div class="form-group">
-          <label for="exampleFormControlSelect1">Example select</label>
-          <select class="form-control" id="message-contacts">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
+            <label>Example select</label>
+            <select class="form-control" id="messages-contacts">
+                <option>1</option>
+            </select>
         </div>
         <div class="form-group">
-          <label for="exampleFormControlTextarea1">Example textarea</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <label>Example textarea</label>
+            <textarea class="form-control" id="messages-text-message" rows="3"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-      <hr>
-      
+        <submit onclick="send_message()" class="btn btn-primary">Submit</submit>
+        <script>
+            function send_message() {
+                let selectedItem = document.getElementById("messages-contacts").value
+                let receiver_id = sessionStorage.getItem(selectedItem)
+                let text_message = document.getElementById("messages-text-message").value
+
+                let dataManager = new DataManager()
+
+                // &receiver=4&message=Hello%2C%20this%20is%20a%20test%20message
+                let jwt = encodeURIComponent(sessionStorage.getItem('jwt'))
+                let query = `/api/Message?jwt=${jwt}&receiver=${receiver_id}&message=${text_message}`
+                dataManager.send_request(dataManager.postTemplate, query, function (response) {
+                    if (response) {
+                        location.reload();
+                    } else {
+                        alert("Could not send message. Please try again")
+                    }
+                })
+            }
+        </script>
+    </form>
+    <hr>
+
     <table class="table">
         <thead>
-            <tr>
-   
-                <th scope="col">Sender</th>
-                <th scope="col">Receiver</th>
-                <th scope="col">Date</th>
-                <th scope="col">Message</th>
-            </tr>
+        <tr>
+            <th scope="col">Sender</th>
+            <th scope="col">Receiver</th>
+            <th scope="col">Date</th>
+            <th scope="col">Message</th>
+        </tr>
         </thead>
-<tbody id="messages-view-message">
+        <tbody id="messages-view-message">
         <script>
             let dataManager = new DataManager();
             let jwt = encodeURIComponent(sessionStorage.getItem("jwt"));
@@ -94,22 +109,29 @@
             dataManager.send_request(dataManager.getTemplate, query, function (response) {
                 response = JSON.parse(response)
                 console.log(response)
-                messageArray = response['messages']
-                
+                let messageArray = response['messages']
+
                 let htmlTemplate = ""
+                let contacts = {}
+
                 for (let i = 0; i < messageArray.length; i++) {
-                    console.log(messageArray[i])
                     let sender_id = messageArray[i]['sender']
                     let receiver_id = messageArray[i]['receiver']
                     let sender_name = messageArray[i]['sender_name']
                     let receiver_name = messageArray[i]['receiver_name']
                     let message = messageArray[i]['message']
                     let timestamp = messageArray[i]['timestamp']
-                   
 
-                    htmlTemplate += ` 
+                    if (!(sender_id in contacts)) {
+                        contacts[sender_id] = sender_name
+                    }
+
+                    if (!(receiver_id in contacts)) {
+                        contacts[receiver_id] = receiver_name
+                    }
+
+                    htmlTemplate += `
                                         <tr>
-                                       
                                          <td>${sender_name}</td>
                                          <td>${receiver_name}</td>
                                          <td>${timestamp}</td>
@@ -119,9 +141,20 @@
                                 `;
                 }
                 $("#messages-view-message").html(htmlTemplate);
-            })
 
-        // {"messages":[{"sender":5,"receiver":4,"sender_name":"Sainsburys","receiver_name":"nathan","message":"Hello, application rejected :) ","timestamp":"10/04/2021 18:43:13"},{"sender":4,"receiver":5,"sender_name":"nathan","receiver_name":"Sainsburys","message":"No thanks","timestamp":"01/01/2020 10:13:10"},{"sender":5,"receiver":4,"sender_name":"Sainsburys","receiver_name":"nathan","message":"Please work for free","timestamp":"01/01/2020 10:12:10"},{"sender":5,"receiver":4,"sender_name":"Sainsburys","receiver_name":"nathan","message":"Hello how are you","timestamp":"01/01/2020 10:11:10"},{"sender":4,"receiver":5,"sender_name":"nathan","receiver_name":"Sainsburys","message":"Hello!","timestamp":"01/01/2020 10:10:10"}]}
+                htmlTemplate = ""
+                for (let key in contacts) {
+                    console.log(key, contacts[key]);
+
+                    let name = contacts[key];
+                    htmlTemplate += `<option>${name}</option>`
+                    sessionStorage.setItem(name, key)
+                }
+
+                console.log(htmlTemplate)
+                $("#messages-contacts").html(htmlTemplate)
+
+            })
         </script>
         </tbody>
     </table>
