@@ -33,16 +33,19 @@
                 <li class="nav-item">
                     <a class="nav-link" href="home.html">Home</a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Profile
-                        <span class="sr-only">(current)</span>
-                    </a>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
+                    <a class="nav-link" onclick="logout()" href="loginPage.html">Logout</a>
+                    <script>
+                        function logout() {
+                            sessionStorage.clear();
+                        }
+                    </script>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="messages.html">Messages</a>
                 </li>
             </ul>
         </div>
@@ -142,7 +145,7 @@
 
         $("#user-profile-reviewcard").html(htmlTemplate);
 
-        let averageRating = totalRatings/reviews.length;
+        let averageRating = totalRatings / reviews.length;
 
         let profile = response[jwt]
         htmlTemplate = `<p>Name: ${profile['name']}</p>

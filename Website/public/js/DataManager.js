@@ -6,6 +6,11 @@ class DataManager {
             method: 'POST',
             redirect: 'follow'
         };
+
+        this.getTemplate = {
+            method: 'GET',
+            redirect: 'follow'
+        };
     }
 
     send_request(requestOptions, query, callback) {
