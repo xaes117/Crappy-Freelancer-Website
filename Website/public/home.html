@@ -155,7 +155,7 @@
             <div id="home-page-userinfo">
 
             </div>
-            <a href="profile.html" class="btn btn-primary">View Profile</a>
+            <a href="profile.html" class="btn btn-primary btn-block">View Profile</a>
         </div>
         <div class="col-md-4 mb-5">
             <h2>Profile Image</h2>
@@ -236,10 +236,16 @@
         htmlTemplate = `<p>Name: ${profile[0]}</p>
                         <p>Account Type: ${profile[2]}</p>
                         <p>Description/Skills: ${profile[1]}</p>`
+
+        sessionStorage.setItem('acc_type', profile[2])
+
         $("#home-page-userinfo").html(htmlTemplate);
 
         if (profile[2] === 'business') {
-            htmlTemplate = `<a href="createProjectPage.html" type="button" class="btn btn-warning">Create Project</a>`
+            htmlTemplate = `<a href="createProjectPage.html" type="button" class="btn btn-warning btn-block">Create Project</a>`
+            $("#home-page-userinfo").append(htmlTemplate)
+
+            htmlTemplate = `<a href="manageProjects.html" type="button" class="btn btn-danger btn-block">Manage Projects</a>`
             $("#home-page-userinfo").append(htmlTemplate)
         }
 

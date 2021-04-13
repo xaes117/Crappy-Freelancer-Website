@@ -58,7 +58,7 @@ namespace Platform.Tests.Controllers
 
             //Act
             JObject mockObject = decisionController.Get(mockJwt);
-            string projectName = (string) mockObject[mockJwt][0]["projectName"];
+            string projectName = (string) mockObject["proposalList"][0]["projectName"];
 
             // Assert
             Assert.IsTrue(projectName.Equals("mockProjectName"));
@@ -76,7 +76,7 @@ namespace Platform.Tests.Controllers
             bool acceptProposal = false;
 
             //Act
-            string jsonObject = decisionController.Put(mockPutJwt, mockId, acceptProposal);
+            string jsonObject = decisionController.Post(mockPutJwt, mockId, acceptProposal);
 
             // Assert
             Assert.IsTrue(jsonObject.Contains("'OK'"));

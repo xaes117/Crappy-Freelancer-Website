@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Business Frontpage - Start Bootstrap Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/business-frontpage.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/DataManager.js"></script>
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">My Freelance Website</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="profile.html">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="logout()" href="loginPage.html">Logout</a>
+                    <script>
+                        function logout() {
+                            sessionStorage.clear();
+                        }
+                    </script>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="messages.html">Messages</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th scope="col">Project Name</th>
+                    <th scope="col">Applicant</th>
+                    <th scope="col">Description and Skills</th>
+                    <th scope="col">Cover Letter</th>
+                    <th scope="col">Actions/Status</th>
+                </tr>
+                </thead>
+                <tbody id="manageProjects-proposal-view">
+                <!--                "proposalId": 6,-->
+                <!--                "projectId": 1,-->
+                <!--                "projectName": "Sample Project",-->
+                <!--                "projectDescription": "Example description",-->
+                <!--                "username": "Frank Franklin",-->
+                <!--                "userDescription": "Software developer",-->
+                <!--                "userProfileImg": "https://res.cloudinary.com/soft7003/image/upload/v1616025937/samples/animals/cat.jpg",-->
+                <!--                "coverLetter": "Hello, please accept me",-->
+                <!--                "status": ""-->
+                <script>
+                    let dataManager = new DataManager();
+                    let jwt = encodeURIComponent(sessionStorage.getItem('jwt'))
+
+                    let getProposalQuery = `/api/ProposalDecision?jwt=${jwt}`
+                    dataManager.send_request(dataManager.getTemplate, getProposalQuery, function (response) {
+                        response = JSON.parse(response)
+                        let proposals = response['proposalList']
+                        let htmlTemplate = ""
+
+                        for (let i = 0; i < proposals.length; i++) {
+                            htmlTemplate += ` <tr>
+                                                <td>${proposals[i]['projectName']}</td>
+                                                <td>${proposals[i]['username']}</td>
+                                                <td>${proposals[i]['userDescription']}</td>
+                                                <td>${proposals[i]['coverLetter']}</td>
+                                                <td id="manageProposals-action-${i}">
+                                                </td>
+                                              </tr>`
+                        }
+                        $("#manageProjects-proposal-view").append(htmlTemplate)
+
+                        for (let i = 0; i < proposals.length; i++) {
+                            if (proposals[i]['status'] === 'rejected' || proposals[i]['status']) {
+                                htmlTemplate = proposals[i]['status']
+                            } else {
+                                htmlTemplate = `<button type="button" onclick="decideProposal(${proposals[i]['proposalId']}, true)" class="btn btn-success">Accept</button>
+                                                  <button type="button" onclick="decideProposal(${proposals[i]['proposalId']}, false)" class="btn btn-danger">Reject</button>`
+                            }
+                            $(`#manageProposals-action-${i}`).append(htmlTemplate)
+                        }
+
+                    })
+
+                    function decideProposal(id, accepted) {
+                        let query = `/api/ProposalDecision?jwt=${jwt}&proposalId=${id}&acceptProposal=${accepted}`
+                        dataManager.send_request(dataManager.postTemplate, query, function(response) {
+                            window.location = "manageProjects.html"
+                            console.log(response)
+                        })
+                    }
+
+                </script>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- /.container -->
+<hr>
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    </div>
+    <!-- /.container -->
+</footer>
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

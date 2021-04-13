@@ -30,15 +30,15 @@ namespace Platform.Controllers
                 foreach (List<string> p in proposals)
                 {
                     Proposal proposal = new Proposal(
-                        Int32.Parse(p[0]), 
                         Int32.Parse(p[1]), 
+                        Int32.Parse(p[0]), 
                         p[2], p[3], p[4], p[5], p[6], p[7], p[8]);
                     proposalList.Add(proposal);
                 }
 
                 // create output structure
                 Dictionary<string, List<Proposal>> outList = new Dictionary<string, List<Proposal>>();
-                outList.Add(jwt, proposalList);
+                outList.Add("proposalList", proposalList);
 
                 // return json object
                 return JObject.Parse(JsonConvert.SerializeObject(outList));
@@ -51,7 +51,7 @@ namespace Platform.Controllers
         }
 
         // PUT api/<controller>/5
-        public string Put(string jwt, int proposalId, bool acceptProposal)
+        public string Post(string jwt, int proposalId, bool acceptProposal)
         {
             try
             {

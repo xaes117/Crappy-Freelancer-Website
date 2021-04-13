@@ -64,4 +64,4 @@ function round(value, precision) {
 }
 
 // Storehttps://2c455c97dcd8.ngrok.io/api/Project/1
-sessionStorage.setItem("jwt", "WQCQfmu8bh7E2s9eIY3VrvebYVg5HI0kHLuk2NAj7lU=");
+sessionStorage.setItem("jwt", "zyRkwsTd+E6zZDMnrGEJYGnJh44yMdjXdJPl+fayy7E=");
