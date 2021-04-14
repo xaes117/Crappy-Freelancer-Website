@@ -31,7 +31,7 @@ namespace Platform.Tests.Controllers
             bool isComplete = true;
 
             //Act
-            string jwt = managerController.Put(mockProjectId, mockJwt, isComplete);
+            string jwt = managerController.Post(mockProjectId, mockJwt, isComplete);
 
             // Assert
             Assert.IsTrue(jwt.Equals(mockJwt));
@@ -49,7 +49,7 @@ namespace Platform.Tests.Controllers
             bool isComplete = false;
 
             //Act
-            string jwt = managerController.Put(mockProjectId, mockJwt, isComplete);
+            string jwt = managerController.Post(mockProjectId, mockJwt, isComplete);
 
             // Assert
             Assert.IsTrue(jwt.Equals(mockJwt));

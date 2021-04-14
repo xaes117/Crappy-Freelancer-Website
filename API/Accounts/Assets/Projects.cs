@@ -16,7 +16,7 @@ namespace Accounts.Assets
         public string businessDeescription;
         public string projectTitle;
         public string projectDescription;
-
+        public string projectStatus; 
         public Projects(string businessName, string profileImageUrl, string businessDeescription, string projectTitle, string projectDescription)
         {
             this.businessName = businessName;
@@ -24,6 +24,18 @@ namespace Accounts.Assets
             this.businessDeescription = businessDeescription;
             this.projectTitle = projectTitle;
             this.projectDescription = projectDescription;
+        }
+
+        public Projects(string businessName, string profileImageUrl, string businessDeescription, string projectTitle, string projectDescription, string status, int owner_id, int projectId)
+        {
+            this.businessName = businessName;
+            this.profileImageUrl = AccountManager.TrimHTTPHeader(profileImageUrl);
+            this.businessDeescription = businessDeescription;
+            this.projectTitle = projectTitle;
+            this.projectDescription = projectDescription;
+            this.projectStatus = status;
+            this.ownerId = owner_id;
+            this.projectId = projectId;
         }
 
         public Projects(int projectId, int ownerId, string projectTitle, string projectDescription)

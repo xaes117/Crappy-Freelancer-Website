@@ -22,7 +22,7 @@ namespace Platform.Controllers
 
             string getProfileQuery = "                         " +
                 "select users.name,                            " +
-                "users.description,                           " +
+                "users.description,                            " +
                 "users.acc_type,                               " +
                 "users.profile_image_url                       " +
                 "from users                                    " +
@@ -41,14 +41,17 @@ namespace Platform.Controllers
                 if (accountType.ToLower().Equals("business"))
                 {
                     string getProjects =
-                    "select                                           " +
-                    "    users.name as 'project owner',               " +
-                    "	 users.profile_image_url,                     " +
-                    "    users.description as 'business description', " +
-                    "	 projects.project_name,                       " +
-                    "    projects.description as 'project description'" +
-                    "from projects                                    " +
-                    "left join users on users.uid = projects.owner_id " +
+                    "select                                            " +
+                    "    users.name as 'project owner',                " +
+                    "	 users.profile_image_url,                      " +
+                    "    users.description as 'business description',  " +
+                    "	 projects.project_name,                        " +
+                    "    projects.description as 'project description'," +
+                    "    projects.status as 'status',                  " +
+                    "    projects.owner_id,                            " +
+                    "    projects.projectid                            " +
+                    "from projects                                     " +
+                    "left join users on users.uid = projects.owner_id  " +
                     "where users.name = '" + name + "';";
 
                     List<List<string>> projectListFromDB = dataManager.Select(getProjects);
@@ -61,8 +64,11 @@ namespace Platform.Controllers
                         string businessDescription = projectInfo[2];
                         string projectName = projectInfo[3];
                         string projectDescription = projectInfo[4];
+                        string projectStatus = projectInfo[5];
+                        int owner_id = Int32.Parse(projectInfo[6]);
+                        int projectId = Int32.Parse(projectInfo[7]);
 
-                        projectList.Add(new Projects(projectOwner, profileImage, businessDescription, projectName, projectDescription));
+                        projectList.Add(new Projects(projectOwner, profileImage, businessDescription, projectName, projectDescription, projectStatus, owner_id, projectId));
                     }
 
                     Dictionary<string, Object> outList = new Dictionary<string, Object>();

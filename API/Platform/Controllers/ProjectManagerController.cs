@@ -14,7 +14,7 @@ namespace Platform.Controllers
 
         // PUT: api/ProjectManager/5
         // Update progress on a project to completion or in progress
-        public string Put(int projectId, string jwt, bool status)
+        public string Post(int projectId, string jwt, bool status)
         {
             // consider using JWT to authenticate first
             if (status)

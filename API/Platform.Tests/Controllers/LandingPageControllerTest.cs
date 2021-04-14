@@ -40,7 +40,7 @@ namespace Platform.Tests.Controllers
                     return new List<List<string>>
                     {
                         new List<string> {
-                            "projectOwner", "imageUrl", "businessDescription", "projectName", "projectDescription"
+                            "projectOwner", "imageUrl", "businessDescription", "projectName", "projectDescription", "pending", "1", "2"
                         }
                     };
                 }

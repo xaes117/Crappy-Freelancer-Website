@@ -69,64 +69,169 @@
                 </tr>
                 </thead>
                 <tbody id="manageProjects-proposal-view">
-                <!--                "proposalId": 6,-->
-                <!--                "projectId": 1,-->
-                <!--                "projectName": "Sample Project",-->
-                <!--                "projectDescription": "Example description",-->
-                <!--                "username": "Frank Franklin",-->
-                <!--                "userDescription": "Software developer",-->
-                <!--                "userProfileImg": "https://res.cloudinary.com/soft7003/image/upload/v1616025937/samples/animals/cat.jpg",-->
-                <!--                "coverLetter": "Hello, please accept me",-->
-                <!--                "status": ""-->
-                <script>
-                    let dataManager = new DataManager();
-                    let jwt = encodeURIComponent(sessionStorage.getItem('jwt'))
-
-                    let getProposalQuery = `/api/ProposalDecision?jwt=${jwt}`
-                    dataManager.send_request(dataManager.getTemplate, getProposalQuery, function (response) {
-                        response = JSON.parse(response)
-                        let proposals = response['proposalList']
-                        let htmlTemplate = ""
-
-                        for (let i = 0; i < proposals.length; i++) {
-                            htmlTemplate += ` <tr>
-                                                <td>${proposals[i]['projectName']}</td>
-                                                <td>${proposals[i]['username']}</td>
-                                                <td>${proposals[i]['userDescription']}</td>
-                                                <td>${proposals[i]['coverLetter']}</td>
-                                                <td id="manageProposals-action-${i}">
-                                                </td>
-                                              </tr>`
-                        }
-                        $("#manageProjects-proposal-view").append(htmlTemplate)
-
-                        for (let i = 0; i < proposals.length; i++) {
-                            if (proposals[i]['status'] === 'rejected' || proposals[i]['status']) {
-                                htmlTemplate = proposals[i]['status']
-                            } else {
-                                htmlTemplate = `<button type="button" onclick="decideProposal(${proposals[i]['proposalId']}, true)" class="btn btn-success">Accept</button>
-                                                  <button type="button" onclick="decideProposal(${proposals[i]['proposalId']}, false)" class="btn btn-danger">Reject</button>`
-                            }
-                            $(`#manageProposals-action-${i}`).append(htmlTemplate)
-                        }
-
-                    })
-
-                    function decideProposal(id, accepted) {
-                        let query = `/api/ProposalDecision?jwt=${jwt}&proposalId=${id}&acceptProposal=${accepted}`
-                        dataManager.send_request(dataManager.postTemplate, query, function(response) {
-                            window.location = "manageProjects.html"
-                            console.log(response)
-                        })
-                    }
-
-                </script>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th scope="col">Project Name</th>
+                    <th scope="col">Accepted Applicants</th>
+                    <th scope="col">Project Status</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody id="manageProjects-projects">
                 </tbody>
             </table>
         </div>
     </div>
 </div>
 <!-- /.container -->
+
+<!--                "proposalId": 6,-->
+<!--                "projectId": 1,-->
+<!--                "projectName": "Sample Project",-->
+<!--                "projectDescription": "Example description",-->
+<!--                "username": "Frank Franklin",-->
+<!--                "userDescription": "Software developer",-->
+<!--                "userProfileImg": "https://res.cloudinary.com/soft7003/image/upload/v1616025937/samples/animals/cat.jpg",-->
+<!--                "coverLetter": "Hello, please accept me",-->
+<!--                "status": ""-->
+<script>
+    let dataManager = new DataManager();
+    let jwt = encodeURIComponent(sessionStorage.getItem('jwt'))
+
+    let getProposalQuery = `/api/ProposalDecision?jwt=${jwt}`
+    let acceptedStudents = {}
+
+    dataManager.send_request(dataManager.getTemplate, getProposalQuery, function (response) {
+        response = JSON.parse(response)
+
+        let proposals = response['proposalList']
+        let htmlTemplate = ""
+
+        // Generate Proposals Table
+
+        for (let i = 0; i < proposals.length; i++) {
+            htmlTemplate += ` <tr>
+                                <td>${proposals[i]['projectName']}</td>
+                                <td>${proposals[i]['username']}</td>
+                                <td>${proposals[i]['userDescription']}</td>
+                                <td>${proposals[i]['coverLetter']}</td>
+                                <td id="manageProposals-action-${i}">
+                                </td>
+                              </tr>`
+
+            if (proposals[i]['status'] === 'accepted') {
+                let projId = proposals[i]['projectId']
+                let user = proposals[i]['username']
+                if (projId in acceptedStudents) {
+                    acceptedStudents[projId] = acceptedStudents[projId].concat([user])
+                } else {
+                    acceptedStudents[projId] = [user]
+                }
+            }
+        }
+
+        $("#manageProjects-proposal-view").append(htmlTemplate)
+
+        for (let i = 0; i < proposals.length; i++) {
+            if (proposals[i]['status'] === 'rejected' || proposals[i]['status']) {
+                htmlTemplate = proposals[i]['status']
+            } else {
+                htmlTemplate = `<button type="button" onclick="decideProposal(${proposals[i]['proposalId']}, true)" class="btn btn-success">Accept</button>
+                                                  <button type="button" onclick="decideProposal(${proposals[i]['proposalId']}, false)" class="btn btn-danger">Reject</button>`
+            }
+            $(`#manageProposals-action-${i}`).append(htmlTemplate)
+        }
+
+        // Generate Project Management Table
+
+        let getProjectsQuery = `/api/LandingPage?jwt=${jwt}`
+        dataManager.send_request(dataManager.getTemplate, getProjectsQuery, function (response) {
+            response = JSON.parse(response)
+            console.log(response)
+
+            let projects = response['projects']
+            let htmlTemplate = ""
+
+            for (let i = 0; i < projects.length; i++) {
+                let projectId = projects[i]['projectId']
+                let projectStatus = projects[i]['projectStatus']
+                if (projectStatus === 'progress') {
+                    projectStatus = 'in progress'
+                }
+                let projectTitle = projects[i]['projectTitle']
+                let acceptedCol = ""
+
+                if (projectId in acceptedStudents) {
+                    acceptedStudents[projectId].forEach(function(student) {
+                        console.log(student)
+                        acceptedCol += student + "<br>"
+                    })
+                }
+                htmlTemplate += ` <tr>
+                                <td>${projectTitle}</td>
+                                <td>${acceptedCol}</td>
+                                <td>${projectStatus}</td>
+                                <td id="manageProject-action-${i}">
+                                </td>
+                              </tr>`
+            }
+            $("#manageProjects-projects").append(htmlTemplate)
+
+            for (let i = 0; i < projects.length; i++) {
+                let projectId = projects[i]['projectId']
+                let status = projects[i]['projectStatus']
+                console.log(status)
+                if (projects[i]['projectStatus'] === 'complete') {
+                    htmlTemplate = `<button type="button" onclick="projectUpdate(${projectId}, '${status}')" class="btn btn-primary">Leave a review</button>`
+                } else if (projects[i]['projectStatus'] === 'progress') {
+                    htmlTemplate = `<button type="button" onclick="projectUpdate(${projectId}, '${status}')" class="btn btn-warning">Mark as Complete</button>`
+                } else {
+                    htmlTemplate = `<button type="button" onclick="projectUpdate(${projectId}, '${status}')" class="btn btn-success">Start project!</button>`
+                }
+                $(`#manageProject-action-${i}`).append(htmlTemplate)
+            }
+        })
+    })
+
+    function decideProposal(id, accepted) {
+        let query = `/api/ProposalDecision?jwt=${jwt}&proposalId=${id}&acceptProposal=${accepted}`
+        dataManager.send_request(dataManager.postTemplate, query, function(response) {
+            window.location = "manageProjects.html"
+            console.log(response)
+        })
+    }
+
+    function projectUpdate(projectId, status) {
+        let query
+        console.log(status)
+        if (status === 'pending') {
+            query = `/api/ProjectManager?projectId=${projectId}&jwt=${jwt}&status=false`
+            dataManager.send_request(dataManager.postTemplate, query, function (response) {
+                window.location = "manageProjects.html"
+                console.log(response)
+            })
+        } else if (status === 'progress') {
+            query = `/api/ProjectManager?projectId=${projectId}&jwt=${jwt}&status=true`
+            dataManager.send_request(dataManager.postTemplate, query, function (response) {
+                window.location = "manageProjects.html"
+                console.log(response)
+            })
+        } else {
+            console.log("Leave a review!")
+        }
+    }
+
+</script>
 <hr>
 <!-- Footer -->
 <footer class="py-5 bg-dark">
