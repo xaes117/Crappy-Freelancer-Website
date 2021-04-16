@@ -7,7 +7,6 @@ function login1() {
     let password = document.getElementById("login-password").value;
 
     dataManager.login_user(email, username, password)
-
 }
 
 function register() {
@@ -21,11 +20,17 @@ function register() {
     let isStudent = document.getElementById('register-select').value
 
     //Is the user a student or not
-    isStudent = isStudent.value === "Student";
-
+    isStudent = isStudent === "Student";
     if (pass !== passCheck) {
         document.getElementById("error").innerHTML = "Passwords don't match";
     } else {
-        dataManager.create_user(email, username, pass, isStudent)
+        let format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+
+        // check if password has 6 characters
+        // check if password has a special character
+        // check if password has at least 1 number
+        if (pass.length() >= 6 && format.test(pass) && /\d/.test(pass)) {
+            dataManager.create_user(email, username, pass, isStudent)
+        }
     }
 }

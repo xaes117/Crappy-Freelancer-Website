@@ -1,6 +1,6 @@
 class DataManager {
     constructor() {
-        this.baseUrl = "https://259506afa260.ngrok.io";
+        this.baseUrl = "https://62f0d73dfb94.ngrok.io";
 
         this.postTemplate = {
             method: 'POST',
