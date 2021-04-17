@@ -16,6 +16,8 @@ namespace Platform.Controllers
         private DataManager dataManager;
 
         // GET api/<controller>/5
+        [HttpGet]
+        [Route("api/ProposalDecision")]
         public JObject Get(string jwt)
         {
             try
@@ -32,7 +34,7 @@ namespace Platform.Controllers
                     Proposal proposal = new Proposal(
                         Int32.Parse(p[1]), 
                         Int32.Parse(p[0]), 
-                        p[2], p[3], p[4], p[5], p[6], p[7], p[8], Int32.Parse(p[9]));
+                        p[2], p[3], p[4], p[5], p[6], p[7], p[8], Int32.Parse(p[9]), Int32.Parse(p[10]));
                     proposalList.Add(proposal);
                 }
 
@@ -51,7 +53,10 @@ namespace Platform.Controllers
         }
 
         // PUT api/<controller>/5
-        public string Post(string jwt, int proposalId, bool acceptProposal)
+
+        [HttpPost]
+        [Route("api/ProposalDecision")]
+        public string PostDecision(string jwt, int proposalId, bool acceptProposal)
         {
             try
             {
@@ -77,6 +82,21 @@ namespace Platform.Controllers
             catch (Exception e)
             {
                 return e.ToString();
+            }
+        }
+
+        [HttpPost]
+        [Route("api/MarkAsReviewed")]
+        public string PostReviewedStatus(int proposalId)
+        {
+            try
+            {
+                string query = "UPDATE `soft7003`.`proposals` SET `reviewed` = '1' WHERE (`proposal_id` = '" + proposalId + "');";
+                this.dataManager.Update(query);
+                return "successfully updated proposal";
+            } catch
+            {
+                return "unsuccessful update";
             }
         }
 
@@ -117,7 +137,8 @@ namespace Platform.Controllers
                    "users.profile_image_url,                                        " +
                    "proposals.cover_letter,                                         " +
                    "proposals.status,                                               " +
-                   "proposals.student_id                                            " +
+                   "proposals.student_id,                                           " +
+                   "proposals.reviewed                                              " +
                    "from proposals                                                  " +
                    "left join projects on projects.projectid = proposals.project_id " +
                    "left join web_tokens t on t.uid = projects.owner_id             " +

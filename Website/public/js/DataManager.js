@@ -1,6 +1,6 @@
 class DataManager {
     constructor() {
-        this.baseUrl = "https://6e4fd3fe69cd.ngrok.io";
+        this.baseUrl = "https://73fc328a3d05.ngrok.io";
 
         this.postTemplate = {
             method: 'POST',
@@ -54,6 +54,14 @@ class DataManager {
         let query = `/api/Review?review_giver=${giver}&review_receiver=${receiver}&rating=${rating}&reviewDescription=${description}`
         this.send_request(this.postTemplate, query, function (response) {
             console.log(response);
+        })
+    }
+
+    mark_proposal_as_reviewed(proposalId) {
+        let query = `/api/MarkAsReviewed?proposalId=${proposalId}`
+        this.send_request(this.postTemplate, query, function (response) {
+            console.log(response)
+            window.location = "manageProjects.html"
         })
     }
 }

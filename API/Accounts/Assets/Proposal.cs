@@ -11,6 +11,7 @@ namespace Accounts.Assets
         public int proposalId;
         public int projectId;
         public int studentId;
+        public int reviewed;
         public string projectName;
         public string projectDescription;
         public string username;
@@ -19,7 +20,7 @@ namespace Accounts.Assets
         public string coverLetter;
         public string status;
 
-        public Proposal(int proposalId, int projectId, string projectName, string projectDescription, string username, string userDescription, string userProfileImg, string coverLetter, string status, int studentId)
+        public Proposal(int proposalId, int projectId, string projectName, string projectDescription, string username, string userDescription, string userProfileImg, string coverLetter, string status, int studentId, int reviewed)
         {
             this.proposalId = proposalId;
             this.projectId = projectId;
@@ -31,6 +32,7 @@ namespace Accounts.Assets
             this.coverLetter = coverLetter;
             this.status = status;
             this.studentId = studentId;
+            this.reviewed = reviewed;
         }
     }
 }

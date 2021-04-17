@@ -8,7 +8,7 @@ namespace Platform
 {
     public static class WebApiConfig
     {
-        public const string URL = "https://6e4fd3fe69cd.ngrok.io";
+        public const string URL = "https://73fc328a3d05.ngrok.io";
 
         public static void Register(HttpConfiguration config)
         {

@@ -100,6 +100,8 @@
     let getProposalQuery = `/api/ProposalDecision?jwt=${jwt}`
     let acceptedStudents = {}
     let acceptedStudentIds = {}
+    let proposalIds = {}
+    let reviewed = {}
 
     dataManager.send_request(dataManager.getTemplate, getProposalQuery, function (response) {
         response = JSON.parse(response)
@@ -123,12 +125,19 @@
                 let projId = proposals[i]['projectId']
                 let user = proposals[i]['username']
                 let userId = proposals[i]['studentId']
+                let has_reviewed = proposals[i]['reviewed']
+                let proposalId = proposals[i]['proposalId']
+
                 if (projId in acceptedStudents) {
                     acceptedStudents[projId] = acceptedStudents[projId].concat([user])
                     acceptedStudentIds[projId] = acceptedStudentIds[projId].concat([userId])
+                    proposalIds[projId] = proposalIds[projId].concat([proposalId])
+                    reviewed[projId] = reviewed[projId].concat([has_reviewed])
                 } else {
                     acceptedStudents[projId] = [user]
                     acceptedStudentIds[projId] = [userId]
+                    proposalIds[projId] = [proposalId]
+                    reviewed[projId] = [has_reviewed]
                 }
             }
         }
@@ -189,7 +198,14 @@
                         for (let i = 0; i < acceptedStudents[projectId].length; i++) {
                             let student_id = acceptedStudentIds[projectId][i]
                             let student_name = acceptedStudents[projectId][i]
-                            htmlTemplate += `<button type="button" onclick="projectUpdate(${student_id}, '${status}')" class="btn btn-primary">Leave a review for ${student_name}</button>`
+                            let proposal_id = proposalIds[projectId][i]
+
+                            if (reviewed[projectId][i] === 1) {
+                                htmlTemplate += `<p>${student_name} has been reviewed</p>`
+                            } else {
+                                htmlTemplate += `<button type="button" onclick="projectUpdate(${student_id}, '${status}', ${proposal_id})" class="btn btn-primary">Leave a review for ${student_name}</button>`
+                            }
+                            htmlTemplate += `<br>`
                         }
                     }
                 } else if (projects[i]['projectStatus'] === 'progress') {
@@ -211,7 +227,7 @@
         })
     }
 
-    function projectUpdate(id, status) {
+    function projectUpdate(id, status, proposal_id = '0') {
         let query
         console.log(status)
         if (status === 'pending') {
@@ -228,6 +244,7 @@
             })
         } else {
             sessionStorage.setItem('review-student-id', id)
+            sessionStorage.setItem('review-student-proposalId', proposal_id)
             $("#myModal").modal()
         }
     }
@@ -262,11 +279,10 @@
                 </button>
                 <script>
                     function send_review_as_business() {
-                        console.log(sessionStorage.getItem('uid'))
-                        console.log(sessionStorage.getItem('review-student-id'))
-                        console.log(document.getElementById('manager-provide-star-review').value)
-                        console.log(document.getElementById('manager-provide-review-description').value)
-                        // dataManager.submit_review(sessionStorage.getItem('uid'), sessionStorage.getItem('review-student-id'), )
+                        let star_rating = document.getElementById('manager-provide-star-review').value
+                        let review_description = document.getElementById('manager-provide-review-description').value
+                        dataManager.submit_review(sessionStorage.getItem('uid'), sessionStorage.getItem('review-student-id'), star_rating, review_description)
+                        dataManager.mark_proposal_as_reviewed(sessionStorage.getItem('review-student-proposalId'))
                     }
                 </script>
             </div>
