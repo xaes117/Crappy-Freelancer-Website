@@ -21,7 +21,7 @@ namespace Platform.Tests.Controllers
                     {
                         "1", "2", "mockProjectName", "mockProjectDescription", "mockUsername", 
                         "mockUserDescription", "mockProfileImage",
-                        "mockCoverLetter", "accepted"
+                        "mockCoverLetter", "accepted", "1", "1"
                     };
 
                     return new List<List<string>>
@@ -76,7 +76,7 @@ namespace Platform.Tests.Controllers
             bool acceptProposal = false;
 
             //Act
-            string jsonObject = decisionController.Post(mockPutJwt, mockId, acceptProposal);
+            string jsonObject = decisionController.PostDecision(mockPutJwt, mockId, acceptProposal);
 
             // Assert
             Assert.IsTrue(jsonObject.Contains("'OK'"));

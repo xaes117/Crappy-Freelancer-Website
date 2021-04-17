@@ -20,7 +20,7 @@ namespace Platform.Tests.Controllers
                     return new List<List<string>>
                     {
                         new List<string> {
-                            "businessName", "businessDescription", "business", "imageUrl"
+                            "businessName", "businessDescription", "business", "imageUrl", "1"
                         }
                     };
                 }
@@ -30,7 +30,7 @@ namespace Platform.Tests.Controllers
                     return new List<List<string>>
                     {
                         new List<string> {
-                            "studentName", "studentDescription", "student", "imageUrl"
+                            "studentName", "studentDescription", "student", "imageUrl", "1"
                         }
                     };
                 }
