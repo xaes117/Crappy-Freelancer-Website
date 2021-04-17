@@ -87,33 +87,23 @@
                     <th scope="col">Actions</th>
                 </tr>
                 </thead>
-                <tbody id="manageProjects-projects">
+                <tbody id="manageProjects-projects-k">
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-<!-- /.container -->
-
-<!--                "proposalId": 6,-->
-<!--                "projectId": 1,-->
-<!--                "projectName": "Sample Project",-->
-<!--                "projectDescription": "Example description",-->
-<!--                "username": "Frank Franklin",-->
-<!--                "userDescription": "Software developer",-->
-<!--                "userProfileImg": "https://res.cloudinary.com/soft7003/image/upload/v1616025937/samples/animals/cat.jpg",-->
-<!--                "coverLetter": "Hello, please accept me",-->
-<!--                "status": ""-->
 <script>
     let dataManager = new DataManager();
     let jwt = encodeURIComponent(sessionStorage.getItem('jwt'))
 
     let getProposalQuery = `/api/ProposalDecision?jwt=${jwt}`
     let acceptedStudents = {}
+    let acceptedStudentIds = {}
 
     dataManager.send_request(dataManager.getTemplate, getProposalQuery, function (response) {
         response = JSON.parse(response)
-
+        console.log(response)
         let proposals = response['proposalList']
         let htmlTemplate = ""
 
@@ -132,10 +122,13 @@
             if (proposals[i]['status'] === 'accepted') {
                 let projId = proposals[i]['projectId']
                 let user = proposals[i]['username']
+                let userId = proposals[i]['studentId']
                 if (projId in acceptedStudents) {
                     acceptedStudents[projId] = acceptedStudents[projId].concat([user])
+                    acceptedStudentIds[projId] = acceptedStudentIds[projId].concat([userId])
                 } else {
                     acceptedStudents[projId] = [user]
+                    acceptedStudentIds[projId] = [userId]
                 }
             }
         }
@@ -172,66 +165,115 @@
                 let acceptedCol = ""
 
                 if (projectId in acceptedStudents) {
-                    acceptedStudents[projectId].forEach(function(student) {
-                        console.log(student)
+                    acceptedStudents[projectId].forEach(function (student) {
                         acceptedCol += student + "<br>"
                     })
                 }
-                htmlTemplate += ` <tr>
-                                <td>${projectTitle}</td>
-                                <td>${acceptedCol}</td>
-                                <td>${projectStatus}</td>
-                                <td id="manageProject-action-${i}">
-                                </td>
-                              </tr>`
+                htmlTemplate += `<tr>
+                                   <td>${projectTitle}</td>
+                                   <td>${acceptedCol}</td>
+                                   <td>${projectStatus}</td>
+                                   <td id="manageProject-action-${i}"></td>
+                                 </tr>`
             }
-            $("#manageProjects-projects").append(htmlTemplate)
+            console.log(htmlTemplate)
+            $("#manageProjects-projects-k").append(htmlTemplate)
+            htmlTemplate = ""
 
             for (let i = 0; i < projects.length; i++) {
                 let projectId = projects[i]['projectId']
                 let status = projects[i]['projectStatus']
-                console.log(status)
+
                 if (projects[i]['projectStatus'] === 'complete') {
-                    htmlTemplate = `<button type="button" onclick="projectUpdate(${projectId}, '${status}')" class="btn btn-primary">Leave a review</button>`
+                    if (projectId in acceptedStudents) {
+                        for (let i = 0; i < acceptedStudents[projectId].length; i++) {
+                            let student_id = acceptedStudentIds[projectId][i]
+                            let student_name = acceptedStudents[projectId][i]
+                            htmlTemplate += `<button type="button" onclick="projectUpdate(${student_id}, '${status}')" class="btn btn-primary">Leave a review for ${student_name}</button>`
+                        }
+                    }
                 } else if (projects[i]['projectStatus'] === 'progress') {
                     htmlTemplate = `<button type="button" onclick="projectUpdate(${projectId}, '${status}')" class="btn btn-warning">Mark as Complete</button>`
                 } else {
                     htmlTemplate = `<button type="button" onclick="projectUpdate(${projectId}, '${status}')" class="btn btn-success">Start project!</button>`
                 }
                 $(`#manageProject-action-${i}`).append(htmlTemplate)
+                htmlTemplate = ""
             }
         })
     })
 
     function decideProposal(id, accepted) {
         let query = `/api/ProposalDecision?jwt=${jwt}&proposalId=${id}&acceptProposal=${accepted}`
-        dataManager.send_request(dataManager.postTemplate, query, function(response) {
+        dataManager.send_request(dataManager.postTemplate, query, function (response) {
             window.location = "manageProjects.html"
             console.log(response)
         })
     }
 
-    function projectUpdate(projectId, status) {
+    function projectUpdate(id, status) {
         let query
         console.log(status)
         if (status === 'pending') {
-            query = `/api/ProjectManager?projectId=${projectId}&jwt=${jwt}&status=false`
+            query = `/api/ProjectManager?projectId=${id}&jwt=${jwt}&status=false`
             dataManager.send_request(dataManager.postTemplate, query, function (response) {
                 window.location = "manageProjects.html"
                 console.log(response)
             })
         } else if (status === 'progress') {
-            query = `/api/ProjectManager?projectId=${projectId}&jwt=${jwt}&status=true`
+            query = `/api/ProjectManager?projectId=${id}&jwt=${jwt}&status=true`
             dataManager.send_request(dataManager.postTemplate, query, function (response) {
                 window.location = "manageProjects.html"
                 console.log(response)
             })
         } else {
-            console.log("Leave a review!")
+            sessionStorage.setItem('review-student-id', id)
+            $("#myModal").modal()
         }
     }
 
 </script>
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <label for="manager-provide-star-review">Rate this user out of 5</label>
+                <select class="form-control" id="manager-provide-star-review">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+            <div class="modal-body">
+                <label for="manager-provide-review-description">Example textarea</label>
+                <textarea class="form-control" id="manager-provide-review-description" rows="3"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal" onclick="send_review_as_business()">
+                    Submit Review
+                </button>
+                <script>
+                    function send_review_as_business() {
+                        console.log(sessionStorage.getItem('uid'))
+                        console.log(sessionStorage.getItem('review-student-id'))
+                        console.log(document.getElementById('manager-provide-star-review').value)
+                        console.log(document.getElementById('manager-provide-review-description').value)
+                        // dataManager.submit_review(sessionStorage.getItem('uid'), sessionStorage.getItem('review-student-id'), )
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
 <hr>
 <!-- Footer -->
 <footer class="py-5 bg-dark">

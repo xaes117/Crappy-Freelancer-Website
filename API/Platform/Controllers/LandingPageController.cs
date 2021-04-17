@@ -24,7 +24,8 @@ namespace Platform.Controllers
                 "select users.name,                            " +
                 "users.description,                            " +
                 "users.acc_type,                               " +
-                "users.profile_image_url                       " +
+                "users.profile_image_url,                      " +
+                "users.uid                                     " +
                 "from users                                    " +
                 "left join web_tokens wt on wt.uid = users.uid " +
                 "where wt.jwt = '" + jwt + "';                 ";
@@ -37,6 +38,7 @@ namespace Platform.Controllers
                 string userDescription = profile[1];
                 string accountType = profile[2];
                 string profileImageUrl = profile[3];
+                string uid = profile[4];
                 
                 if (accountType.ToLower().Equals("business"))
                 {

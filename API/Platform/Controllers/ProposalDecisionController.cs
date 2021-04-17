@@ -32,7 +32,7 @@ namespace Platform.Controllers
                     Proposal proposal = new Proposal(
                         Int32.Parse(p[1]), 
                         Int32.Parse(p[0]), 
-                        p[2], p[3], p[4], p[5], p[6], p[7], p[8]);
+                        p[2], p[3], p[4], p[5], p[6], p[7], p[8], Int32.Parse(p[9]));
                     proposalList.Add(proposal);
                 }
 
@@ -116,7 +116,8 @@ namespace Platform.Controllers
                    "users.description,                                              " +
                    "users.profile_image_url,                                        " +
                    "proposals.cover_letter,                                         " +
-                   "proposals.status                                                " +
+                   "proposals.status,                                               " +
+                   "proposals.student_id                                            " +
                    "from proposals                                                  " +
                    "left join projects on projects.projectid = proposals.project_id " +
                    "left join web_tokens t on t.uid = projects.owner_id             " +

@@ -1,6 +1,6 @@
 class DataManager {
     constructor() {
-        this.baseUrl = "https://62f0d73dfb94.ngrok.io";
+        this.baseUrl = "https://6e4fd3fe69cd.ngrok.io";
 
         this.postTemplate = {
             method: 'POST',
@@ -49,6 +49,13 @@ class DataManager {
             }
         })
     }
+
+    submit_review(giver, receiver, rating, description) {
+        let query = `/api/Review?review_giver=${giver}&review_receiver=${receiver}&rating=${rating}&reviewDescription=${description}`
+        this.send_request(this.postTemplate, query, function (response) {
+            console.log(response);
+        })
+    }
 }
 
 function loadPage(pageType, id) {
@@ -65,3 +72,5 @@ function round(value, precision) {
 
 // Storehttps://2c455c97dcd8.ngrok.io/api/Project/1
 sessionStorage.setItem("jwt", "zyRkwsTd+E6zZDMnrGEJYGnJh44yMdjXdJPl+fayy7E=");
+sessionStorage.setItem('uid', '5');
+
