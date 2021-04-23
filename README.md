@@ -1,6 +1,6 @@
 # SOFT7003-Project
 
-Repository to hold the world for the SOFT7003 Project. 
+Repository for the SOFT7003 Project. 
 
 Collaborators: 
 Nathan L.<br/>
