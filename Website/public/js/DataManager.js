@@ -1,6 +1,6 @@
 class DataManager {
     constructor() {
-        this.baseUrl = "https://73fc328a3d05.ngrok.io";
+        this.baseUrl = "https://5b124d275628.ngrok.io";
 
         this.postTemplate = {
             method: 'POST',
@@ -79,6 +79,7 @@ function round(value, precision) {
 }
 
 // Storehttps://2c455c97dcd8.ngrok.io/api/Project/1
-sessionStorage.setItem("jwt", "zyRkwsTd+E6zZDMnrGEJYGnJh44yMdjXdJPl+fayy7E=");
+// sessionStorage.setItem("jwt", "zyRkwsTd+E6zZDMnrGEJYGnJh44yMdjXdJPl+fayy7E=");
+sessionStorage.setItem("jwt", '0BAu0El08KNGXEp4UOPMwBWi6XYtScyJw2rg3HlS8rA=')
 sessionStorage.setItem('uid', '5');
 

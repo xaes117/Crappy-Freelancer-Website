@@ -91,6 +91,12 @@ namespace Platform.Controllers
         {
             try
             {
+                // do not allow negative ids
+                if (proposalId < 0)
+                {
+                    throw new Exception();
+                }
+
                 string query = "UPDATE `soft7003`.`proposals` SET `reviewed` = '1' WHERE (`proposal_id` = '" + proposalId + "');";
                 this.dataManager.Update(query);
                 return "successfully updated proposal";

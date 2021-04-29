@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 using Platform.Controllers;
+
 using System;
 using System.Collections.Generic;
 
@@ -36,6 +37,13 @@ namespace Platform.Tests.Controllers
                     {
                         new List<string>(), new List<string>()
                     };
+                }
+
+
+                if (query.ToUpper().Contains("UPDATE"))
+                {
+                    // Do not update anything in the database
+                    return null;
                 }
 
                 return null;
@@ -83,14 +91,35 @@ namespace Platform.Tests.Controllers
         }
 
         [TestMethod]
-        public void ApplyToProjectTest()
+        public void PostReviewStatusTest()
         {
             // Arrange
+            MockDataManager mockDataManager = new MockDataManager();
+            ProposalDecisionController decisionController = new ProposalDecisionController(mockDataManager);
 
-            // Act
+            int mockId = 1;
+            
+            //Act
+            string returnString = decisionController.PostReviewedStatus(mockId);
 
             // Assert
+            Assert.IsTrue(returnString.Contains("successfully updated proposal"));
+        }
 
+        [TestMethod]
+        public void PostReviewStatusErrorTest()
+        {
+            // Arrange
+            MockDataManager mockDataManager = new MockDataManager();
+            ProposalDecisionController decisionController = new ProposalDecisionController(mockDataManager);
+
+            int mockId = -1;
+
+            //Act
+            string returnString = decisionController.PostReviewedStatus(mockId);
+
+            // Assert
+            Assert.IsFalse(returnString.Contains("successfully updated proposal"));
         }
     }
 }
