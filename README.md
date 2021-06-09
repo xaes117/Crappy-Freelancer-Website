@@ -1,4 +1,4 @@
-# SOFT7003-Project
+# Basic Freelancer Website
 
 Repository for the SOFT7003 Project. 
 
